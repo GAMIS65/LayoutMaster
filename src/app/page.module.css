@@ -1,0 +1,26 @@
+.key {
+  /* background-color: white;
+  display: inline;
+  margin-right: 0.2rem; */
+  /* min-width: 100%; */
+  display: inline-flex;
+  border-radius: 16px;
+  border: 2px solid #e5e5e5;
+  border-bottom: 7px solid #e5e5e5;
+  margin: 5px;
+  padding: 12px 16px;
+  transition: all 0.1s;
+}
+
+.key.active {
+  /* background-color: #60E100; */
+  border: 2px solid #60E100;
+  border-bottom: 7px solid #60E100;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
