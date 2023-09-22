@@ -2,7 +2,7 @@
 
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
-import english from './languages/english-ansi.json'
+import english from './languages/english-ansi-old.json'
 
 type KeyProps = {
   name: string,
@@ -16,7 +16,7 @@ function Key({ name, isActive }: KeyProps) {
 }
 
 export default function Home() {
-  const [text, setText] = useState("Aa5%[{");
+  const [text, setText] = useState("Test 123");
   const [currentLetter, setCurrentLetter] = useState(0);
   const [leftShift, setLeftShift] = useState(false);
   const [rightShift, setRightShift] = useState(false);
