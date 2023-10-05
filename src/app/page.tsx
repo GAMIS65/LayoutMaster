@@ -17,7 +17,7 @@ function Key({ name, isActive, style }: KeyProps) {
 }
 
 export default function Home() {
-  const [text, setText] = useState('A*Test 123');
+  const [text, setText] = useState('QWERTYUIOP[]');
   const [currentLetter, setCurrentLetter] = useState(0);
   const [leftShift, setLeftShift] = useState(false);
   const [rightShift, setRightShift] = useState(false);
@@ -26,16 +26,36 @@ export default function Home() {
     setCurrentLetter(event.currentTarget.value.length);
   };
 
+  const findShiftForKey = (letterToFind: string, layout: any): string | undefined => {
+    for (const row in layout) {
+      for (const key in layout[row]) {
+        const letterVariants = layout[row][key].letter;
+        if (letterVariants.includes(letterToFind)) {
+          return layout[row][key].shift;
+        }
+      }
+    }
+    return undefined;
+}
+
   useEffect(() => {
-    console.log(text[currentLetter])
+    console.log(text[currentLetter]);
+    const currentShift = findShiftForKey(text[currentLetter], english.layout);
     if (
       text &&
       text[currentLetter] &&
       (text[currentLetter] === text[currentLetter].toUpperCase() &&
-        text[currentLetter] !== text[currentLetter].toLowerCase())
+        text[currentLetter] !== text[currentLetter].toLowerCase()) || /^[^a-zA-Z0-9]$/.test(text[currentLetter])
     ) {
-      setLeftShift(true);
+      if(currentShift === "left") {
+        setLeftShift(true);
+        setRightShift(false);
+      } else {
+        setRightShift(true);
+        setLeftShift(false);
+      }
     } else {
+      setRightShift(false);
       setLeftShift(false);
     }
   }, [text, currentLetter]);
