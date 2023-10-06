@@ -10,10 +10,29 @@ type KeyProps = {
   style: string
 }
 
+type LetterDisplayProps = {
+  text: string;
+}
+
 const layout = english.layout; 
 
 function Key({ name, isActive, style }: KeyProps) {
   return <div className={`${styles.key} ${isActive ? styles[style] : ''}`}>{name}</div>;
+}
+
+function LetterDisplay({ text }: LetterDisplayProps) {
+  // const letters = text.split('');
+
+  // return (
+  //   <div className={styles["letter-display"]}>
+  //     {letters.map((letter, index) => (
+  //       <div key={index} className={styles["letter"]}>{letter}</div>
+  //     ))}
+  //   </div>
+  // );
+  return (
+    <div className={styles["letter"]}>{text}</div>
+  )
 }
 
 export default function Home() {
@@ -79,7 +98,8 @@ export default function Home() {
 
   return (
     <div className={styles.wrapper}>
-      <div>{text}</div>
+      <LetterDisplay text={text[currentLetter]}/> 
+      {/* <div>{text}</div> */}
       <input onChange={handleKeyDown} />
       {keyboard}
     </div>
