@@ -12,6 +12,12 @@ type KeyProps = {
 
 type LetterDisplayProps = {
   text: string;
+  index: number;
+}
+
+type DisplayKeyProps = {
+  name: string;
+  isActive: boolean;
 }
 
 const layout = english.layout; 
@@ -20,23 +26,29 @@ function Key({ name, isActive, style }: KeyProps) {
   return <div className={`${styles.key} ${isActive ? styles[style] : ''}`}>{name}</div>;
 }
 
-function LetterDisplay({ text }: LetterDisplayProps) {
-  // const letters = text.split('');
+function DisplayKey({name, isActive}: DisplayKeyProps) {
+  return <div className={`${styles.letter} ${isActive ? styles.active : ''}`}>{name}</div>;
+}
 
-  // return (
-  //   <div className={styles["letter-display"]}>
-  //     {letters.map((letter, index) => (
-  //       <div key={index} className={styles["letter"]}>{letter}</div>
-  //     ))}
-  //   </div>
-  // );
+function LetterDisplay({ text, index }: LetterDisplayProps) {
+
+  const letters = text.split("");
+  console.log(text);
+
   return (
-    <div className={styles["letter"]}>{text}</div>
-  )
+    <div className={styles["letter-display"]}>
+      {letters.map((letter, test) => (
+        <DisplayKey key={test}  name={letter} isActive={index === test}/>
+      ))}
+    </div>
+  );
+  // return (
+  //   <div className={styles["letter"]}>{text}</div>
+  // )
 }
 
 export default function Home() {
-  const [text, setText] = useState('QWERTYUIOP[]');
+  const [text, setText] = useState('asdfghjkl;zxcvbnm,./');
   const [currentLetter, setCurrentLetter] = useState(0);
   const [leftShift, setLeftShift] = useState(false);
   const [rightShift, setRightShift] = useState(false);
@@ -98,7 +110,7 @@ export default function Home() {
 
   return (
     <div className={styles.wrapper}>
-      <LetterDisplay text={text[currentLetter]}/> 
+      <LetterDisplay text={text} index={currentLetter}/> 
       {/* <div>{text}</div> */}
       <input onChange={handleKeyDown} />
       {keyboard}
