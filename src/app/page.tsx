@@ -3,21 +3,12 @@
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import english from './languages/english-ansi.json'
+import LetterDisplay from './components/LetterDisplay'
 
 type KeyProps = {
   name: string,
   isActive: boolean | string,
   style: string
-}
-
-type LetterDisplayProps = {
-  text: string;
-  index: number;
-}
-
-type DisplayKeyProps = {
-  name: string;
-  isActive: boolean;
 }
 
 const layout = english.layout; 
@@ -26,35 +17,6 @@ function Key({ name, isActive, style }: KeyProps) {
   return <div className={`${styles.key} ${isActive ? styles[style] : ''}`}>{name}</div>;
 }
 
-function DisplayKey({name, isActive}: DisplayKeyProps) {
-  return <div className={`${styles.letter} ${isActive ? styles.active : ''}`}>{name}</div>;
-}
-
-function LetterDisplay({ text, index }: LetterDisplayProps) {
-
-  const letters = text.split("");
-  console.log(text);
-  return (
-  <div className={styles["letter-display"]}>
-
-      {text[index-1] && <DisplayKey name={text[index-1]} isActive={false}/> }
-
-      {text[index] && <DisplayKey name={text[index]} isActive={true}/>}
-      
-      {text[index+1] && <DisplayKey name={text[index+1]} isActive={false}/>}
-  </div>
-  );
-  // return (
-  //   <div className={styles["letter-display"]}>
-  //     {letters.map((letter, test) => (
-  //       <DisplayKey key={test}  name={letter} isActive={index === test}/>
-  //     ))}
-  //   </div>
-  // );
-  // return (
-  //   <div className={styles["letter"]}>{text}</div>
-  // )
-}
 
 export default function Home() {
   const [text, setText] = useState('asdfghjkl;zxcvbnm,./');
