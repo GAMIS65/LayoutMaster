@@ -1,42 +1,45 @@
 import styles from '../page.module.css'
-type LetterDisplayProps = {
+import React, { useState, useEffect } from 'react'
+
+interface ScrollContainerProps {
   text: string;
-  index: number;
+  currentLetter: number;
 }
 
-type DisplayKeyProps = {
-  name: string;
-  isActive: boolean;
-}
+function LetterDisplay({ text, currentLetter }: ScrollContainerProps) {
+  const [letters, setLetters] = useState<string[]>(text.split(''));
+  const [shiftedLetters, setShiftedLetters] = useState<string[]>([]);
 
-function DisplayKey({name, isActive}: DisplayKeyProps) {
-  return <div className={`${styles.letter} ${isActive ? styles.active : ''}`}>{name}</div>;
-}
+  useEffect(() => {
+    if (currentLetter > 0) {
+      setShiftedLetters((prevLetters) => [...prevLetters, letters[0]]);
+      setLetters((prevLetters) => prevLetters.slice(1));
+    }
+  }, [currentLetter]);
 
-function LetterDisplay({ text, index }: LetterDisplayProps) {
-
-  const letters = text.split("");
-  console.log(text);
   return (
-  <div className={styles["letter-display"]}>
-
-      {text[index-1] && <DisplayKey name={text[index-1]} isActive={false}/> }
-
-      {text[index] && <DisplayKey name={text[index]} isActive={true}/>}
-      
-      {text[index+1] && <DisplayKey name={text[index+1]} isActive={false}/>}
-  </div>
+    <div id={styles["scroll-container"]}>
+      <div id={styles["scroll"]}>
+        <div id={styles["scroll-left"]}>
+          {shiftedLetters.map((letter, index) => (
+            <div key={index} className={styles["display-letter"]}>
+              {letter}
+            </div>
+          ))}
+        </div>
+        <div id={styles["scroll-center"]}>
+          <div className={styles["display-letter"]}>{letters[0]}</div>
+        </div>
+        <div id={styles["scroll-right"]}>
+          {letters.slice(1).map((letter, index) => (
+            <div key={index} className={styles["display-letter"]}>
+              {letter}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
-  // return (
-  //   <div className={styles["letter-display"]}>
-  //     {letters.map((letter, test) => (
-  //       <DisplayKey key={test}  name={letter} isActive={index === test}/>
-  //     ))}
-  //   </div>
-  // );
-  // return (
-  //   <div className={styles["letter"]}>{text}</div>
-  // )
-}
+};
 
 export default LetterDisplay
