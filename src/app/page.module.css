@@ -96,14 +96,13 @@
 
 #scroll-container {
   border: 2px solid #e5e5e5;
-
-
   display: flex;
   justify-content: center;
   overflow: hidden;
   width: 80%;
   margin: auto;
   font-size: 36pt;
+  min-height: 1.25em; /* Adjust this value as needed */
 }
 
 #scroll {

@@ -28,7 +28,7 @@ function LetterDisplay({ text, currentLetter }: ScrollContainerProps) {
           ))}
         </div>
         <div id={styles["scroll-center"]}>
-          <div className={styles["display-letter"]}>{letters[0]}</div>
+          {letters[0] && <div className={styles["display-letter"]}>{letters[0]}</div>}
         </div>
         <div id={styles["scroll-right"]}>
           {letters.slice(1).map((letter, index) => (
