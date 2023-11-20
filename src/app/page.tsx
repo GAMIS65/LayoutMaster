@@ -19,7 +19,7 @@ function Key({ name, isActive, style }: KeyProps) {
 
 
 export default function Home() {
-  const [text, setText] = useState('sdfghjkl;zxcvbnm,./');
+  const [text, setText] = useState('12#Sdfghjkl;zxcvbnm,./');
   const [currentLetter, setCurrentLetter] = useState(0);
   const [leftShift, setLeftShift] = useState(false);
   const [rightShift, setRightShift] = useState(false);
@@ -51,29 +51,40 @@ const handleKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
       }
     }
     return undefined;
-}
-
-  useEffect(() => {
-    console.log(text[currentLetter]);
-    const currentShift = findShiftForKey(text[currentLetter], english.layout);
-    if (
-      text &&
-      text[currentLetter] &&
-      (text[currentLetter] === text[currentLetter].toUpperCase() &&
-        text[currentLetter] !== text[currentLetter].toLowerCase()) || /^[^a-zA-Z0-9]$/.test(text[currentLetter])
-    ) {
-      if(currentShift === "left") {
-        setLeftShift(true);
-        setRightShift(false);
-      } else {
-        setRightShift(true);
-        setLeftShift(false);
+  }
+  
+  const findKeyWithoutShift = (letterToFind: string, layout: any): boolean => {
+    for (const row in layout) {
+      for (const key in layout[row]) {
+        const letterVariants = layout[row][key].letter;
+        if (letterVariants[1] === letterToFind) {
+          return true;
+        }
       }
-    } else {
+    }
+    return false;
+  }
+
+useEffect(() => {
+  console.log(text[currentLetter]);
+  const currentShift = findShiftForKey(text[currentLetter], english.layout);
+  if (
+    text &&
+    text[currentLetter] &&
+    !findKeyWithoutShift(text[currentLetter], english.layout)
+  ) {
+    if(currentShift === "left") {
+      setLeftShift(true);
       setRightShift(false);
+    } else {
+      setRightShift(true);
       setLeftShift(false);
     }
-  }, [text, currentLetter]);
+  } else {
+    setRightShift(false);
+    setLeftShift(false);
+  }
+}, [text, currentLetter]);
 
 const keyboard = Object.entries(layout).map(([rowKey, row], index) => (
   <div key={rowKey} className={`${styles.row} ${styles[`row${index + 1}`]}`}>
