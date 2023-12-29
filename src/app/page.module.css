@@ -84,7 +84,7 @@
   flex-direction: column;
 }
 
-#scroll-container {
+.scroll-container {
   border: 2px solid #e5e5e5;
   display: flex;
   justify-content: center;
@@ -92,29 +92,29 @@
   width: 80%;
   margin: auto;
   font-size: 36pt;
-  min-height: 1.25em; /* Adjust this value as needed */
+  min-height: 1.25em;
 }
 
-#scroll {
+.scroll {
   position: relative;
 }
 
-#scroll-center {
+.scroll-center {
   color: #60E100;
 }
 
-#scroll-left,
-#scroll-right {
+.scroll-left,
+.scroll-right {
   display: flex;
   position: absolute;
   top: 0;
 }
 
-#scroll-left {
+.scroll-left {
   right: 100%;
 }
 
-#scroll-right {
+.scroll-right {
   left: 100%;
 }
 
@@ -132,15 +132,19 @@
 }
 
 .row1 {
-  margin-left: -5%;
+  margin-left: -80px;
 }
 
 .row2 {
-  margin-left: 5%;
+  margin-left: 50px;
 }
 
 .row3 {
-  margin-left: -0.7%;
+  margin-left: -30px;
+}
+
+.row4 {
+  margin-left: -20px;
 }
 
 .square {
@@ -149,5 +153,17 @@
   height: 10px;
   padding: 1px;
   transition: none;
+}
+
+.finger {
+  font-size: 12px;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.finger-container {
+  display: flex;
 }
 

@@ -4,6 +4,7 @@ import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import english from './languages/english-ansi.json'
 import LetterDisplay from './components/LetterDisplay'
+import FingerColors from './components/FingerColors'
 
 type KeyProps = {
   name: string,
@@ -14,7 +15,7 @@ type KeyProps = {
 const layout = english.layout; 
 
 function Key({ name, isActive, style }: KeyProps) {
-  return <div className={`${styles.key} ${isActive ? styles[style] : ''}`}>{name}</div>;
+  return <div className={`${styles.key} ${styles[style]} ${isActive ? styles.active : ''}`}>{name}</div>;
 }
 
 
@@ -109,6 +110,7 @@ const keyboard = Object.entries(layout).map(([rowKey, row], index) => (
       <LetterDisplay text={text} currentLetter={currentLetter} />
       <input onChange={handleKeyDown} />
       <button onClick={() => setShowKeyboard(!showKeyboard)}>{showKeyboard ? 'Klávesnica: ZAPNUTÁ' : 'Klávesnica: VYPNUTÁ'} </button>
+      <FingerColors /> 
       {showKeyboard && keyboard}
     </div>
   );
