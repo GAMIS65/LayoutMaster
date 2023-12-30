@@ -3,8 +3,8 @@
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import english from './languages/english-ansi.json'
-import LetterDisplay from './components/LetterDisplay'
-import FingerColors from './components/FingerColors'
+import LetterDisplay from '../components/LetterDisplay'
+import FingerColors from '../components/FingerColors'
 
 type KeyProps = {
   name: string,
