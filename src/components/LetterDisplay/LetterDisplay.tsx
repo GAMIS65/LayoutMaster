@@ -1,4 +1,4 @@
-import styles from '../app/page.module.css'
+import styles from './LetterDisplay.module.css'
 import React from 'react'
 
 interface ScrollContainerProps {
