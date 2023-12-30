@@ -18,39 +18,39 @@
 }
 
 .key.pinky-left {
-  background-color: #ec8494; /* pastel pink */
+  background-color: var(--pinky-left); 
 }
 
 .key.ring-left {
-  background-color: #e8bb94; /* pastel peach */
+  background-color: var(--ring-left);
 }
 
 .key.middle-left {
-  background-color: #8ac0d2; /* pastel blue */
+  background-color: var(--middle-left); 
 }
 
 .key.index-left {
-  background-color: #8be18b; /* pastel green */
+  background-color: var(--index-left); 
 }
 
 .key.index-right {
-  background-color: #B19CD9; /* pastel purple */
+  background-color: var(--index-right); 
 }
 
 .key.middle-right {
-  background-color: #FFD6A5; /* pastel yellow */
+  background-color: var(--middle-right); 
 }
 
 .key.ring-right {
-  background-color: #F0E68C; /* pastel khaki */
+  background-color: var(--ring-right); 
 }
 
 .key.pinky-right {
-  background-color: #FFA07A; /* pastel salmon */
+  background-color: var(--pinky-right); 
 }
 
 .key.thumb-left {
-  background-color: #AFEEEE; /* pastel turquoise */
+  background-color: var(--thumb-left); 
 }
 
 .letter-display {
