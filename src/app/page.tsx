@@ -6,25 +6,14 @@ import english from '../languages/english-ansi.json'
 import LetterDisplay from '../components/LetterDisplay/LetterDisplay'
 import FingerColors from '../components/FingerColors'
 import LetterProgress from '../components/LetterProgress/LetterProgress';
-
-type KeyProps = {
-  name: string,
-  isActive: boolean | string,
-  style: string
-}
+import Keyboard from '../components/Keyboard/Keyboard';
 
 const keyboardData = english;
 const keyboardLayout = keyboardData.layout; 
 
-function Key({ name, isActive, style }: KeyProps) {
-  return <div className={`${styles.key} ${styles[style]} ${isActive ? styles.active : ''}`}>{name}</div>;
-}
-
 export default function Home() {
   const [text, setText] = useState('');
   const [currentLetter, setCurrentLetter] = useState(0);
-  const [leftShift, setLeftShift] = useState(false);
-  const [rightShift, setRightShift] = useState(false);
   const [inputLength, setInputLength] = useState(0);
   const [showKeyboard, setShowKeyboard] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -92,30 +81,6 @@ const handleKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
   }
 };
 
-  const findShiftForKey = (letterToFind: string, layout: any): string | undefined => {
-    for (const row in layout) {
-      for (const key in layout[row]) {
-        const letterVariants = layout[row][key].letter;
-        if (letterVariants.includes(letterToFind)) {
-          return layout[row][key].shift;
-        }
-      }
-    }
-    return undefined;
-  }
-  
-  const findKeyWithoutShift = (letterToFind: string, layout: any): boolean => {
-    for (const row in layout) {
-      for (const key in layout[row]) {
-        const letterVariants = layout[row][key].letter;
-        if (letterVariants[1] === letterToFind) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   const generateLetters = (count: number, letters: Array<string>, currentLetter: string): string => {
     let output = "";
 
@@ -136,44 +101,8 @@ useEffect(() => {
   if (inputLength === text.length - 5 || text.length === 0) {
     console.log(inputLength, text.length)
       setText((text) => text + generateLetters(5, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
-  }
-
-  const currentShift = findShiftForKey(text[currentLetter], keyboardLayout);
-  if (
-    text &&
-    text[currentLetter] &&
-    !findKeyWithoutShift(text[currentLetter], keyboardLayout)
-  ) {
-    if(currentShift === "left") {
-      setLeftShift(true);
-      setRightShift(false);
-    } else {
-      setRightShift(true);
-      setLeftShift(false);
     }
-  } else {
-    setRightShift(false);
-    setLeftShift(false);
-  }
-}, [text, currentLetter]);
-
-const keyboard = Object.entries(keyboardLayout).map(([rowKey, row], index) => (
-  <div key={rowKey} className={`${styles.row} ${styles[`row${index + 1}`]}`}>
-    {Object.entries(row).map(([key, keyProps]) => (
-      <Key
-        key={key}
-        name={keyProps.letter[0] || ""}
-        style={keyProps.finger}
-        isActive={
-          text[currentLetter] === keyProps.letter[1] ||
-          (keyProps.letter[2] && text[currentLetter] === keyProps.letter[2]) ||
-          (keyProps.letter[1] === "ShiftLeft" && leftShift) ||
-          (keyProps.letter[1] === "ShiftRight" && rightShift)
-        }
-      />
-    ))}
-  </div>
-));
+  }, [text, currentLetter, inputLength, level]);
 
   return (
     <div className={styles.wrapper}>
@@ -182,7 +111,7 @@ const keyboard = Object.entries(keyboardLayout).map(([rowKey, row], index) => (
       <button onClick={() => setShowKeyboard(!showKeyboard)}>{showKeyboard ? 'Klávesnica: ZAPNUTÁ' : 'Klávesnica: VYPNUTÁ'} </button>
       <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />
       {showKeyboard && <FingerColors />}
-      {showKeyboard && keyboard}
+      {showKeyboard && <Keyboard keyboardLayout={keyboardLayout} text={text} currentLetter={currentLetter} />}
     </div>
   );
 }
