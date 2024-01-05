@@ -2,84 +2,85 @@
 
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
-import english from '../languages/english-ansi.json'
+import englishQwertyAnsi from '../languages/english-ansi.json'
 import LetterDisplay from '../components/LetterDisplay/LetterDisplay'
 import FingerColors from '../components/FingerColors'
 import LetterProgress from '../components/LetterProgress/LetterProgress';
 import Keyboard from '../components/Keyboard/Keyboard';
+import LanguageSelection from '../components/LanguageSelection';
 
-const keyboardData = english;
-const keyboardLayout = keyboardData.layout; 
 
 export default function Home() {
   const [text, setText] = useState('');
+  const [layout, setLayout] = useState(englishQwertyAnsi);
   const [currentLetter, setCurrentLetter] = useState(0);
   const [inputLength, setInputLength] = useState(0);
   const [showKeyboard, setShowKeyboard] = useState(true);
   const [progress, setProgress] = useState(0);
   const [level, setLevel] = useState(() => {
-      const savedLevel = localStorage.getItem('level');
+      const savedLevel = localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`);
       return savedLevel !== null ? Number(savedLevel) : 0;
   });
   const [mistakes, setMistakes] = useState({});
   const [mistakeCount, setMistakeCount] = useState(0);
 
-const handleKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const inputValue = event.currentTarget.value;
-  const lastEnteredLetter = inputValue[inputValue.length - 1];
+  const keyboardData = layout;
+  const keyboardLayout = keyboardData.layout;
 
-  console.log(inputLength);
-  if (inputValue.length < inputLength) {
-    event.currentTarget.value = inputValue + text[currentLetter - 1];
-  } else if (lastEnteredLetter === text[currentLetter]) {
-    setCurrentLetter(inputValue.length);
-    setInputLength(inputValue.length);
-    
-    if (lastEnteredLetter === keyboardData.stages[level] || lastEnteredLetter === keyboardData.stages[level].toUpperCase()) {
-      setProgress((progress) => progress += 1);
-    }
+  const handleKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.currentTarget.value;
+    const lastEnteredLetter = inputValue[inputValue.length - 1];
 
-    if (progress >= 30) {
-      setProgress(0);
-
-      if (level !== keyboardData.stages.length - 1) {
-        // TODO store the level in db
-        const newLevel = level + 1;
-        setLevel(newLevel);
-        localStorage.setItem('level', newLevel.toString());
+    if (inputValue.length < inputLength) {
+      event.currentTarget.value = inputValue + text[currentLetter - 1];
+    } else if (lastEnteredLetter === text[currentLetter]) {
+      setCurrentLetter(inputValue.length);
+      setInputLength(inputValue.length);
+      
+      if (lastEnteredLetter === keyboardData.stages[level] || lastEnteredLetter === keyboardData.stages[level].toUpperCase()) {
+        setProgress((progress) => progress += 1);
       }
+
+      if (progress >= 30) {
+        setProgress(0);
+
+        if (level !== keyboardData.stages.length - 1) {
+          // TODO store the level in db
+          const newLevel = level + 1;
+          setLevel(newLevel);
+          localStorage.setItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`, newLevel.toString());
+        }
+      }
+    } else {
+      event.currentTarget.value = inputValue.slice(0, inputValue.length - 1);
+      const newMistake = {...mistakes};
+      // @ts-ignore
+      newMistake[text[currentLetter]] = (newMistake[text[currentLetter]] || 0) + 1;
+      console.log(newMistake);
+
+      if (progress >= -13) {
+        setProgress((progress) => progress -= 3);
+      }
+
+      setMistakes(newMistake);
+      setMistakeCount((mistakeCount) => mistakeCount += 1);
+
+      if (mistakeCount >= 15) {
+        // TODO change this path to a real api endpoint
+        // TODO Make sure the user is logged in
+        fetch('http://127.0.0.1:8080/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(mistakes),
+        });
+      }
+
+      setMistakes({});
+      setMistakeCount(0);
     }
-  } else {
-    event.currentTarget.value = inputValue.slice(0, inputValue.length - 1);
-    const newMistake = {...mistakes};
-    // @ts-ignore
-    newMistake[text[currentLetter]] = (newMistake[text[currentLetter]] || 0) + 1;
-    console.log(newMistake);
-
-    if (progress >= -13) {
-      setProgress((progress) => progress -= 3);
-    }
-
-    setMistakes(newMistake);
-    setMistakeCount((mistakeCount) => mistakeCount += 1);
-
-    if (mistakeCount >= 15) {
-      // TODO change this path to a real api endpoint
-      // TODO Make sure the user is logged in
-      fetch('http://127.0.0.1:8080/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(mistakes),
-      });
-    }
-
-    setMistakes({});
-    setMistakeCount(0);
-
-  }
-};
+  };
 
   const generateLetters = (count: number, letters: Array<string>, currentLetter: string): string => {
     let output = "";
@@ -98,11 +99,13 @@ const handleKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
   }
 
 useEffect(() => {
+  setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
+
   if (inputLength === text.length - 5 || text.length === 0) {
     console.log(inputLength, text.length)
       setText((text) => text + generateLetters(5, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
     }
-  }, [text, currentLetter, inputLength, level]);
+  }, [text, currentLetter, inputLength, level, keyboardData.stages, layout]);
 
   return (
     <div className={styles.wrapper}>
@@ -112,6 +115,8 @@ useEffect(() => {
       <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />
       {showKeyboard && <FingerColors />}
       {showKeyboard && <Keyboard keyboardLayout={keyboardLayout} text={text} currentLetter={currentLetter} />}
-    </div>
+      {// @ts-ignore}
+      <LanguageSelection changeLayout={setLayout} />
+      }</div>
   );
 }
