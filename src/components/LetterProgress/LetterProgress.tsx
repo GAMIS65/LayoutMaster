@@ -1,4 +1,5 @@
 import styles from "./LetterProgress.module.css"
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 type LetterProgressProps = {
     currentLetter: string,
@@ -7,10 +8,12 @@ type LetterProgressProps = {
 
 function LetterProgress({currentLetter, progress}: LetterProgressProps) {
     return (
-        <div className={styles["progress-container"]}>
-            <h1>{currentLetter}</h1>
-            <p>{progress} / 30</p>
-        </div>
+        <>
+            <div className={styles["progress-container"]}>
+                <h1>{currentLetter}</h1>
+            </div>
+            <ProgressBar value={progress} maxValue={30}/>
+        </>
     )
 }
 

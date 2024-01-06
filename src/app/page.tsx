@@ -4,11 +4,12 @@ import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import englishQwertyAnsi from '../languages/english-ansi.json'
 import LetterDisplay from '../components/LetterDisplay/LetterDisplay'
-import FingerColors from '../components/FingerColors'
+import FingerColors from '../components/FingerColors/FingerColors'
 import LetterProgress from '../components/LetterProgress/LetterProgress';
 import Keyboard from '../components/Keyboard/Keyboard';
 import LanguageSelection from '../components/LanguageSelection';
-
+import Navbar from '@/components/Navbar/Navbar'
+import ProgressBar from '@/components/ProgressBar/ProgressBar';
 
 export default function Home() {
   const [text, setText] = useState('');
@@ -58,7 +59,7 @@ export default function Home() {
       newMistake[text[currentLetter]] = (newMistake[text[currentLetter]] || 0) + 1;
       console.log(newMistake);
 
-      if (progress >= -13) {
+      if (progress > 0) {
         setProgress((progress) => progress -= 3);
       }
 
@@ -109,12 +110,17 @@ useEffect(() => {
 
   return (
     <div className={styles.wrapper}>
+      <Navbar />
+      <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress}/>
       <LetterDisplay text={text} currentLetter={currentLetter} />
-      <input onChange={handleKeyDown} />
+      <input onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať'/>
       <button onClick={() => setShowKeyboard(!showKeyboard)}>{showKeyboard ? 'Klávesnica: ZAPNUTÁ' : 'Klávesnica: VYPNUTÁ'} </button>
-      <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />
-      {showKeyboard && <FingerColors />}
-      {showKeyboard && <Keyboard keyboardLayout={keyboardLayout} text={text} currentLetter={currentLetter} />}
+      <div className={styles["finger-colors-container"]}>
+        {showKeyboard && <FingerColors />}
+      </div>
+      <div className={styles["keyboard-container"]}>
+        {showKeyboard && <Keyboard keyboardLayout={keyboardLayout} text={text} currentLetter={currentLetter} />}
+      </div>
       {// @ts-ignore}
       <LanguageSelection changeLayout={setLayout} />
       }</div>

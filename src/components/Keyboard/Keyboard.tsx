@@ -9,7 +9,7 @@ type KeyProps = {
 
 function Key({ name, isActive, style }: KeyProps) {
   return (
-    <div className={`${styles.key} ${styles[style]} ${isActive ? styles.active : ""}`}>{name}</div>
+    <div className={`${styles.key} ${styles[style]} ${isActive ? styles.active : styles.opacity}`}>{name}</div>
   );
 }
 

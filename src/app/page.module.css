@@ -1,21 +1,29 @@
+body {
+  background-color: var(--dark-background);
+}
+
 .key {
   /* background-color: white;
   display: inline;
   margin-right: 0.2rem; */
   /* min-width: 100%; */
+  text-shadow: white 0px 0px 10px;
   display: inline-flex;
   border-radius: 8px;
   color: white;
   margin: 5px;
   padding: 12px 16px;
   transition: all 0.1s;
-  opacity: 50%;
   text-align: center;
+}
+
+.opacity {
+  opacity: 50%;
 }
 
 .key.active {
   opacity: 100%;
-  box-shadow: 3px 3px #a19a9a;
+  box-shadow: 3px 3px var(--border);
 }
 
 .key.pinky-left {
@@ -125,5 +133,26 @@
 
 .finger-container {
   display: flex;
+  color: var(--text);
 }
 
+.finger-colors-container {
+  background-color: var(--light-background);
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  padding: 0 5px 0 5px;
+}
+
+input {
+  color: var(--text);
+  outline: none;
+  border: 1px solid var(--border);
+  background-color: var(--light-background);
+  box-shadow: none;  
+  width: 200px;
+}
+
+::placeholder {
+  color: var(--text);
+}
