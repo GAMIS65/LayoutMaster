@@ -32,5 +32,7 @@ namespace backend.Models
         public int MistakeCount { get; set; }
 
         public Guid MistakeId { get; set; }
+
+        public Mistake Mistake { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace backend.Models
         public required string Name { get; set; }
         [Required]
         public Guid TeacherId { get; set; }
-        // TODO: Add a join code
+        public required string InviteCode { get; set; }
         public List<Student> Students { get; set; } = new List<Student>();
     }
 }
