@@ -2,7 +2,7 @@
 
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
-import englishQwertyAnsi from '../languages/english-ansi.json'
+import englishQwertyAnsi from '@/keyboards/english-ansi.json'
 import LetterDisplay from '../components/LetterDisplay/LetterDisplay'
 import FingerColors from '../components/FingerColors/FingerColors'
 import LetterProgress from '../components/LetterProgress/LetterProgress';
