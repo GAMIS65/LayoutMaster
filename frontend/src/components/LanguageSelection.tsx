@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Qwerty from '../languages/english-ansi.json'
-import Dvorak from '../languages/dvorak-ansi.json'
+import Qwerty from '@/keyboards/english-ansi.json'
+import Dvorak from '@/keyboards/dvorak-ansi.json'
 
 type KeyInfo = {
   letter: string[];
