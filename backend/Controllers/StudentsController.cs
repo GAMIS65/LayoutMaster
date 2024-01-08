@@ -87,6 +87,7 @@ namespace backend.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStudent(Guid id)
         {
             if (_context.Students == null)
