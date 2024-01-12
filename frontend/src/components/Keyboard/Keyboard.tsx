@@ -67,8 +67,11 @@ function Keyboard({keyboardLayout, text, currentLetter}: KeyboardProps) {
       if (currentShift === "left") {
         setLeftShift(true);
         setRightShift(false);
-      } else {
+      } else if (currentShift === "right") {
         setRightShift(true);
+        setLeftShift(false);
+      } else {
+        setRightShift(false);
         setLeftShift(false);
       }
     } else {
