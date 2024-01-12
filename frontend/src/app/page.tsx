@@ -36,21 +36,23 @@ export default function Home() {
     } else if (lastEnteredLetter === text[currentLetter]) {
       setCurrentLetter(inputValue.length);
       setInputLength(inputValue.length);
-      
-      if (lastEnteredLetter === keyboardData.stages[level] || lastEnteredLetter === keyboardData.stages[level].toUpperCase()) {
-        setProgress((progress) => progress += 1);
-      }
 
-      if (progress >= 30) {
-        setProgress(0);
-
-        if (level !== keyboardData.stages.length - 1) {
-          // TODO store the level in db
-          const newLevel = level + 1;
-          setLevel(newLevel);
-          localStorage.setItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`, newLevel.toString());
+      if (keyboardData.stages[level]) {
+        if (lastEnteredLetter === keyboardData.stages[level] || lastEnteredLetter === keyboardData.stages[level].toUpperCase()) {
+          setProgress((progress) => progress += 1);
         }
-      }
+
+        if (progress >= 30) {
+          setProgress(0);
+  
+          if (level !== keyboardData.stages.length - 1) {
+            // TODO store the level in db
+            const newLevel = level + 1;
+            setLevel(newLevel);
+            localStorage.setItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`, newLevel.toString());
+          }
+        }
+      }     
     } else {
       event.currentTarget.value = inputValue.slice(0, inputValue.length - 1);
       const newMistake = {...mistakes};
@@ -88,15 +90,18 @@ export default function Home() {
     for (let i = 0; i < (count / 2); i++) {
       let letter = letters[Math.floor(Math.random() * (letters.length))];
 
-      if (/^[a-zA-Z]$/.test(letter) && Math.random() > 0.50) {
+      if (Math.random() < 0.50) {
         letter = letter.toUpperCase();
       }
 
-      output += letter + currentLetter;
-    }
+      output += letter + (currentLetter || '');
 
+      if (Math.random() < 0.30) {
+        output += " "
+      }
+    }
     return output;
-  }
+}
 
 useEffect(() => {
   setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
