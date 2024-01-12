@@ -1,5 +1,5 @@
 import styles from "./LetterProgress.module.css"
-import ProgressBar from "../ProgressBar/ProgressBar";
+import ProgressBar from "./ProgressBar/ProgressBar";
 
 type LetterProgressProps = {
     currentLetter: string,

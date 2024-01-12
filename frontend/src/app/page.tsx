@@ -9,7 +9,6 @@ import LetterProgress from '../components/LetterProgress/LetterProgress';
 import Keyboard from '../components/Keyboard/Keyboard';
 import LanguageSelection from '../components/LanguageSelection';
 import Navbar from '@/components/Navbar/Navbar'
-import ProgressBar from '@/components/ProgressBar/ProgressBar';
 
 export default function Home() {
   const [text, setText] = useState('');
