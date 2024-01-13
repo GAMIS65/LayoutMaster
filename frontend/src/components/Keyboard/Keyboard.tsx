@@ -13,16 +13,6 @@ function Key({ name, isActive, style }: KeyProps) {
   );
 }
 
-type KeyInfo = {
-  letter: string[];
-  finger: string;
-  shift: string;
-};
-
-type Row = Record<string, KeyInfo>;
-
-type KeyboardLayout = Record<string, Row>;
-
 type KeyboardProps = {
   keyboardLayout: KeyboardLayout;
   text: string;

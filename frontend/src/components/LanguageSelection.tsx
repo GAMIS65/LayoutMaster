@@ -2,24 +2,6 @@ import React, { useState, useEffect } from "react";
 import Qwerty from '@/keyboards/english-ansi.json'
 import Dvorak from '@/keyboards/dvorak-ansi.json'
 
-type KeyInfo = {
-  letter: string[];
-  finger: string;
-  shift: string;
-};
-
-type Row = Record<string, KeyInfo>;
-
-type KeyboardLayout = Record<string, Row>;
-
-type Keyboard = {
-  name: string
-  "layout-standard": string,
-  language: string,
-  stages: string[],
-  layout: KeyboardLayout 
-}
-
 type LanguageSelectionProps = {
   changeLayout: React.Dispatch<React.SetStateAction<Keyboard>>; 
 }

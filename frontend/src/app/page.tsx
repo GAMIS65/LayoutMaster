@@ -27,6 +27,11 @@ export default function Home() {
   const keyboardData = layout;
   const keyboardLayout = keyboardData.layout;
 
+  const changeLevel = (newLevel: number, layout: Keyboard) => {
+    setLevel(newLevel);
+    localStorage.setItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`, newLevel.toString());
+  }
+
   const handleKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
     const lastEnteredLetter = inputValue[inputValue.length - 1];
@@ -48,11 +53,10 @@ export default function Home() {
           if (level !== keyboardData.stages.length - 1) {
             // TODO store the level in db
             const newLevel = level + 1;
-            setLevel(newLevel);
-            localStorage.setItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`, newLevel.toString());
+            changeLevel(newLevel, keyboardData);
           }
         }
-      }     
+      }
     } else {
       event.currentTarget.value = inputValue.slice(0, inputValue.length - 1);
       const newMistake = {...mistakes};
@@ -87,7 +91,7 @@ export default function Home() {
   const generateLetters = (count: number, letters: Array<string>, currentLetter: string): string => {
     let output = "";
 
-    for (let i = 0; i < (count / 2); i++) {
+    for (let i = 0; i < count; i++) {
       let letter = letters[Math.floor(Math.random() * (letters.length))];
 
       if (Math.random() < 0.50) {
@@ -107,15 +111,15 @@ useEffect(() => {
   setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
 
   if (inputLength === text.length - 5 || text.length === 0) {
-    console.log(inputLength, text.length)
-      setText((text) => text + generateLetters(5, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
+      setText((text) => text + generateLetters(1, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
     }
   }, [text, currentLetter, inputLength, level, keyboardData.stages, layout]);
 
   return (
     <div className={styles.wrapper}>
       <Navbar />
-      <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress}/>
+      {// @ts-ignore}
+      <LetterProgress letters={keyboardData.stages} currentLetter={keyboardData.stages[level]} progress={progress} changeLevel={changeLevel} keyboard={keyboardData}/>}
       <LetterDisplay text={text} currentLetter={currentLetter} />
       <input onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať'/>
       <button onClick={() => setShowKeyboard(!showKeyboard)}>{showKeyboard ? 'Klávesnica: ZAPNUTÁ' : 'Klávesnica: VYPNUTÁ'} </button>
