@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Qwerty from '@/keyboards/english-ansi.json'
-import Dvorak from '@/keyboards/dvorak-ansi.json'
+import Qwerty from '@/keyboards/qwerty-english-ansi.json'
+import Dvorak from '@/keyboards/dvorak-english-ansi.json'
 
 type LanguageSelectionProps = {
   changeLayout: React.Dispatch<React.SetStateAction<Keyboard>>; 
