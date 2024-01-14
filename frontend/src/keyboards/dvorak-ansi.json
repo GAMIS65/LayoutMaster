@@ -1,269 +1,334 @@
 {
   "name": "dvorak",
   "layout-standard": "ansi",
-  "language": "english", 
-  "stages": ["f", "j", "g", "h", "d", "k", "s", "l", "a", ";", ":", "'", "\"", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "{", "}", "|", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "<", ">", "?", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+"],
-  "layout": 
-    {
-      "R0": {
-        "0": {
-          "letter": ["`", "`", "~"],
-          "finger": "pinky-left",
-          "shift": "right"
-        },
-        "1": {
-          "letter": ["1", "1", "!"],
-          "finger": "pinky-left",
-          "shift": "right"
-        },
-        "2": {
-          "letter": ["2", "2", "@"],
-          "finger": "ring-left",
-          "shift": "right"
-        },
-        "3": {
-          "letter": ["3", "3", "#"],
-          "finger": "middle-left",
-          "shift": "right"
-        },
-        "4": {
-          "letter": ["4", "4", "$"],
-          "finger": "index-left",
-          "shift": "right"
-        },
-        "5": {
-          "letter": ["5", "5", "%"],
-          "finger": "index-left",
-          "shift": "right"
-        },
-        "6": {
-          "letter": ["6", "6", "^"],
-          "finger": "index-right",
-          "shift": "left"
-        },
-        "7": {
-          "letter": ["7", "7", "&"],
-          "finger": "index-right",
-          "shift": "left"
-        },
-        "8": {
-          "letter": ["8", "8", "*"], 
-          "finger": "middle-right",
-          "shift": "left"
-        },
-        "9": {
-          "letter": ["9", "9", "("],
-          "finger": "ring-right",
-          "shift": "left"
-        },
-        "10": {
-          "letter": ["0", "0", ")"], 
-          "finger": "pinky-right",
-          "shift": "left"
-        },
-        "11": {
-          "letter": ["[", "[", "{"],
-          "finger": "pinky-right",
-          "shift": "left"
-        },
-        "12": {
-          "letter": ["]", "]", "}"],
-          "finger": "pinky-right",
-          "shift": "left"
-        }
+  "language": "english",
+  "stages": [
+    "u",
+    "h",
+    "i",
+    "d",
+    "e",
+    "t",
+    "o",
+    "n",
+    "a",
+    "s",
+    "-",
+    "_",
+    "y",
+    "f",
+    "p",
+    "g",
+    ".",
+    ">",
+    "c",
+    ",",
+    "<",
+    "r",
+    "'",
+    "\"",
+    "l",
+    "/",
+    "?",
+    "=",
+    "+",
+    "|",
+    "x",
+    "b",
+    "k",
+    "m",
+    "j",
+    "w",
+    "q",
+    "v",
+    ";",
+    ":",
+    "z",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    "[",
+    "]",
+    "!",
+    "@",
+    "#",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "(",
+    ")",
+    "{",
+    "}"
+  ],
+  "layout": {
+    "R0": {
+      "0": {
+        "letter": ["`", "`", "~"],
+        "finger": "pinky-left",
+        "shift": "right"
       },
-      "R1": {
-        "0": {
-          "letter": ["'", "'", "\""],
-          "finger": "pinky-left",
-          "shift": "right"
-        },
-        "1": {
-          "letter": [",", ",", "<"],
-          "finger": "ring-left",
-          "shift": "right"
-        },
-        "2": {
-          "letter": [".", ".", ">"],
-          "finger": "middle-left",
-          "shift": "right"
-        },
-        "3": {
-          "letter": ["p", "p", "P"],
-          "finger": "index-left",
-          "shift": "right"
-        },
-        "4": {
-          "letter": ["y", "y", "Y"],
-          "finger": "index-left",
-          "shift": "right"
-        },
-        "5": {
-          "letter": ["f", "f", "F"],
-          "finger": "index-right",
-          "shift": "left"
-        },
-        "6": {
-          "letter": ["g", "g", "G"],
-          "finger": "index-right",
-          "shift": "left"
-        },
-        "7": {
-          "letter": ["c", "c", "C"],
-          "finger": "middle-right",
-          "shift": "left"
-        },
-        "8": {
-          "letter": ["r", "r", "R"],
-          "finger": "ring-right",
-          "shift": "left"
-        },
-        "9": {
-          "letter": ["l", "l", "L"],
-          "finger": "pinky-right",
-          "shift": "left"
-        },
-        "10": {
-          "letter": ["/", "/", "?"], 
-          "finger": "pinky-right",
-          "shift": "left"
-        },
-        "11": {
-          "letter": ["=", "=", "+"],
-          "finger": "pinky-right",
-          "shift": "left"
-        },
-        "12": {
-          "letter": ["\\", "\\", "|"],
-          "finger": "pinky-right",
-          "shift": "left"
-        }
+      "1": {
+        "letter": ["1", "1", "!"],
+        "finger": "pinky-left",
+        "shift": "right"
       },
-      "R2": {
-        "0": {
-          "letter": ["a", "a", "A"],
-          "finger": "pinky-left",
-          "shift": "right"
-        },
-        "1": {
-          "letter": ["o", "o", "O"],
-          "finger": "ring-left",
-          "shift": "right"
-        },
-        "2": {
-          "letter": ["e", "e", "E"],
-          "finger": "middle-left",
-          "shift": "right"
-        },
-        "3": {
-          "letter": ["u", "u", "U"],
-          "finger": "index-left",
-          "shift": "right"
-        },
-        "4": {
-          "letter": ["i", "i", "I"],
-          "finger": "index-left",
-          "shift": "right"
-        },
-        "5": {
-          "letter": ["d", "d", "D"],
-          "finger": "index-right",
-          "shift": "left"
-        },
-        "6": {
-          "letter": ["h", "h", "H"],
-          "finger": "index-right",
-          "shift": "left"
-        },
-        "7": {
-          "letter": ["t", "t", "T"], 
-          "finger": "middle-right",
-          "shift": "left"
-        },
-        "8": {
-          "letter": ["n", "n", "N"], 
-          "finger": "ring-right",
-          "shift": "left"
-        },
-        "9": {
-          "letter": ["s", "s", "S"],
-          "finger": "pinky-right",
-          "shift": "left"
-        },
-        "10": {
-          "letter": ["-", "-", "_"],
-          "finger": "pinky-right",
-          "shift": "left"
-        }
+      "2": {
+        "letter": ["2", "2", "@"],
+        "finger": "ring-left",
+        "shift": "right"
       },
-      "R3": {
-        "0": {
-          "letter": ["Shift", "ShiftLeft", "ShiftLeft"],
-          "finger": "pinky-left",
-          "shift": ""
-        },
-        "1": {
-          "letter": [";", ";", ":"],
-          "finger": "pinky-left",
-          "shift": "right"
-        },
-        "2": {
-          "letter": ["q", "q", "Q"],
-          "finger": "ring-left",
-          "shift": "right"
-        },
-        "3": {
-          "letter": ["j", "j", "J"],
-          "finger": "middle-left",
-          "shift": "right"
-        },
-        "4": {
-          "letter": ["k", "k", "K"],
-          "finger": "index-left",
-          "shift": "right"
-        },
-        "5": {
-          "letter": ["x", "x", "X"],
-          "finger": "index-left",
-          "shift": "right"
-        },
-        "6": {
-          "letter": ["b", "b", "B"],
-          "finger": "index-right",
-          "shift": "left"
-        },
-        "7": {
-          "letter": ["m", "m", "M"],
-          "finger": "index-right",
-          "shift": "left"
-        },
-        "8": {
-          "letter": ["w", "w", "W"],
-          "finger": "middle-right",
-          "shift": "left"
-        },
-        "9": {
-          "letter": ["v", "v", "V"],
-          "finger": "ring-right",
-          "shift": "left"
-        },
-        "10": {
-          "letter": ["z", "z", "Z"],
-          "finger": "pinky-right",
-          "shift": "left"
-        },
-        "11": {
-          "letter": ["Shift", "ShiftRight", "ShiftRight"],
-          "finger": "pinky-right",
-          "shift": ""
-        }
+      "3": {
+        "letter": ["3", "3", "#"],
+        "finger": "middle-left",
+        "shift": "right"
       },
-      "R4": {
-        "0": {
-          "letter": ["SPACE", "SPACE", " "],
-          "finger": "thumb-left",
-          "shift": ""
-        }
+      "4": {
+        "letter": ["4", "4", "$"],
+        "finger": "index-left",
+        "shift": "right"
+      },
+      "5": {
+        "letter": ["5", "5", "%"],
+        "finger": "index-left",
+        "shift": "right"
+      },
+      "6": {
+        "letter": ["6", "6", "^"],
+        "finger": "index-right",
+        "shift": "left"
+      },
+      "7": {
+        "letter": ["7", "7", "&"],
+        "finger": "index-right",
+        "shift": "left"
+      },
+      "8": {
+        "letter": ["8", "8", "*"],
+        "finger": "middle-right",
+        "shift": "left"
+      },
+      "9": {
+        "letter": ["9", "9", "("],
+        "finger": "ring-right",
+        "shift": "left"
+      },
+      "10": {
+        "letter": ["0", "0", ")"],
+        "finger": "pinky-right",
+        "shift": "left"
+      },
+      "11": {
+        "letter": ["[", "[", "{"],
+        "finger": "pinky-right",
+        "shift": "left"
+      },
+      "12": {
+        "letter": ["]", "]", "}"],
+        "finger": "pinky-right",
+        "shift": "left"
+      }
+    },
+    "R1": {
+      "0": {
+        "letter": ["'", "'", "\""],
+        "finger": "pinky-left",
+        "shift": "right"
+      },
+      "1": {
+        "letter": [",", ",", "<"],
+        "finger": "ring-left",
+        "shift": "right"
+      },
+      "2": {
+        "letter": [".", ".", ">"],
+        "finger": "middle-left",
+        "shift": "right"
+      },
+      "3": {
+        "letter": ["p", "p", "P"],
+        "finger": "index-left",
+        "shift": "right"
+      },
+      "4": {
+        "letter": ["y", "y", "Y"],
+        "finger": "index-left",
+        "shift": "right"
+      },
+      "5": {
+        "letter": ["f", "f", "F"],
+        "finger": "index-right",
+        "shift": "left"
+      },
+      "6": {
+        "letter": ["g", "g", "G"],
+        "finger": "index-right",
+        "shift": "left"
+      },
+      "7": {
+        "letter": ["c", "c", "C"],
+        "finger": "middle-right",
+        "shift": "left"
+      },
+      "8": {
+        "letter": ["r", "r", "R"],
+        "finger": "ring-right",
+        "shift": "left"
+      },
+      "9": {
+        "letter": ["l", "l", "L"],
+        "finger": "pinky-right",
+        "shift": "left"
+      },
+      "10": {
+        "letter": ["/", "/", "?"],
+        "finger": "pinky-right",
+        "shift": "left"
+      },
+      "11": {
+        "letter": ["=", "=", "+"],
+        "finger": "pinky-right",
+        "shift": "left"
+      },
+      "12": {
+        "letter": ["\\", "\\", "|"],
+        "finger": "pinky-right",
+        "shift": "left"
+      }
+    },
+    "R2": {
+      "0": {
+        "letter": ["a", "a", "A"],
+        "finger": "pinky-left",
+        "shift": "right"
+      },
+      "1": {
+        "letter": ["o", "o", "O"],
+        "finger": "ring-left",
+        "shift": "right"
+      },
+      "2": {
+        "letter": ["e", "e", "E"],
+        "finger": "middle-left",
+        "shift": "right"
+      },
+      "3": {
+        "letter": ["u", "u", "U"],
+        "finger": "index-left",
+        "shift": "right"
+      },
+      "4": {
+        "letter": ["i", "i", "I"],
+        "finger": "index-left",
+        "shift": "right"
+      },
+      "5": {
+        "letter": ["d", "d", "D"],
+        "finger": "index-right",
+        "shift": "left"
+      },
+      "6": {
+        "letter": ["h", "h", "H"],
+        "finger": "index-right",
+        "shift": "left"
+      },
+      "7": {
+        "letter": ["t", "t", "T"],
+        "finger": "middle-right",
+        "shift": "left"
+      },
+      "8": {
+        "letter": ["n", "n", "N"],
+        "finger": "ring-right",
+        "shift": "left"
+      },
+      "9": {
+        "letter": ["s", "s", "S"],
+        "finger": "pinky-right",
+        "shift": "left"
+      },
+      "10": {
+        "letter": ["-", "-", "_"],
+        "finger": "pinky-right",
+        "shift": "left"
+      }
+    },
+    "R3": {
+      "0": {
+        "letter": ["Shift", "ShiftLeft", "ShiftLeft"],
+        "finger": "pinky-left",
+        "shift": ""
+      },
+      "1": {
+        "letter": [";", ";", ":"],
+        "finger": "pinky-left",
+        "shift": "right"
+      },
+      "2": {
+        "letter": ["q", "q", "Q"],
+        "finger": "ring-left",
+        "shift": "right"
+      },
+      "3": {
+        "letter": ["j", "j", "J"],
+        "finger": "middle-left",
+        "shift": "right"
+      },
+      "4": {
+        "letter": ["k", "k", "K"],
+        "finger": "index-left",
+        "shift": "right"
+      },
+      "5": {
+        "letter": ["x", "x", "X"],
+        "finger": "index-left",
+        "shift": "right"
+      },
+      "6": {
+        "letter": ["b", "b", "B"],
+        "finger": "index-right",
+        "shift": "left"
+      },
+      "7": {
+        "letter": ["m", "m", "M"],
+        "finger": "index-right",
+        "shift": "left"
+      },
+      "8": {
+        "letter": ["w", "w", "W"],
+        "finger": "middle-right",
+        "shift": "left"
+      },
+      "9": {
+        "letter": ["v", "v", "V"],
+        "finger": "ring-right",
+        "shift": "left"
+      },
+      "10": {
+        "letter": ["z", "z", "Z"],
+        "finger": "pinky-right",
+        "shift": "left"
+      },
+      "11": {
+        "letter": ["Shift", "ShiftRight", "ShiftRight"],
+        "finger": "pinky-right",
+        "shift": ""
+      }
+    },
+    "R4": {
+      "0": {
+        "letter": ["SPACE", "SPACE", " "],
+        "finger": "thumb-left",
+        "shift": ""
       }
     }
+  }
 }
