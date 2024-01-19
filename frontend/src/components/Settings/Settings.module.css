@@ -1,0 +1,13 @@
+dialog {
+    width: 500px;
+    height: 500px;
+    border: solid 2px var(--border);
+    background-color: var(--light-background);
+    color: var(--text);
+    position: fixed;
+    display: inline-block;
+}
+
+.setting {
+    display: inline-block;
+}

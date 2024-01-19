@@ -9,6 +9,7 @@ import LetterProgress from '../components/LetterProgress/LetterProgress';
 import Keyboard from '../components/Keyboard/Keyboard';
 import LanguageSelection from '../components/LanguageSelection';
 import Navbar from '@/components/Navbar/Navbar'
+import Settings from '@/components/Settings/Settings'
 
 export default function Home() {
   const [text, setText] = useState('');
@@ -23,6 +24,7 @@ export default function Home() {
   });
   const [mistakes, setMistakes] = useState({});
   const [mistakeCount, setMistakeCount] = useState(0);
+  const [showSettings, setSettings] = useState(false);
 
   const keyboardData = layout;
   const keyboardLayout = keyboardData.layout;
@@ -122,6 +124,7 @@ useEffect(() => {
       <LetterProgress letters={keyboardData.stages} currentLetter={keyboardData.stages[level]} progress={progress} changeLevel={changeLevel} keyboard={keyboardData}/>}
       <LetterDisplay text={text} currentLetter={currentLetter} />
       <input onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať'/>
+      <button onClick={() => setSettings(!showSettings)}>Nastavenia</button>
       <button onClick={() => setShowKeyboard(!showKeyboard)}>{showKeyboard ? 'Klávesnica: ZAPNUTÁ' : 'Klávesnica: VYPNUTÁ'} </button>
       <div className={styles["finger-colors-container"]}>
         {showKeyboard && <FingerColors />}
@@ -129,8 +132,10 @@ useEffect(() => {
       <div className={styles["keyboard-container"]}>
         {showKeyboard && <Keyboard keyboardLayout={keyboardLayout} text={text} currentLetter={currentLetter} />}
       </div>
-      {// @ts-ignore}
-      <LanguageSelection changeLayout={setLayout} />
-      }</div>
+        {
+          // @ts-ignore
+          showSettings && <Settings closeSettings={() => setSettings(false)} changeLayout={setLayout}/>
+        }
+      </div>
   );
 }
