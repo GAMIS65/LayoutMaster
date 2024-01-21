@@ -7,7 +7,6 @@ import LetterDisplay from '../components/LetterDisplay/LetterDisplay'
 import FingerColors from '../components/FingerColors/FingerColors'
 import LetterProgress from '../components/LetterProgress/LetterProgress';
 import Keyboard from '../components/Keyboard/Keyboard';
-import LanguageSelection from '../components/LanguageSelection';
 import Navbar from '@/components/Navbar/Navbar'
 import Settings from '@/components/Settings/Settings'
 
@@ -113,7 +112,7 @@ useEffect(() => {
   setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
 
   if (inputLength === text.length - 5 || text.length === 0) {
-      setText((text) => text + generateLetters(1, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
+      setText((text) => text + generateLetters(5, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
     }
   }, [text, currentLetter, inputLength, level, keyboardData.stages, layout]);
 
@@ -121,7 +120,7 @@ useEffect(() => {
     <div className={styles.wrapper}>
       <Navbar />
       {// @ts-ignore}
-      <LetterProgress letters={keyboardData.stages} currentLetter={keyboardData.stages[level]} progress={progress} changeLevel={changeLevel} keyboard={keyboardData}/>}
+      <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />}
       <LetterDisplay text={text} currentLetter={currentLetter} />
       <input onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať'/>
       <button onClick={() => setSettings(!showSettings)}>Nastavenia</button>
@@ -134,7 +133,7 @@ useEffect(() => {
       </div>
         {
           // @ts-ignore
-          showSettings && <Settings closeSettings={() => setSettings(false)} changeLayout={setLayout}/>
+          showSettings && <Settings closeSettings={() => setSettings(false)} changeLayout={setLayout} letters={keyboardData.stages} currentLetter={keyboardData.stages[level]} changeLevel={changeLevel} keyboard={keyboardData}/>
         }
       </div>
   );

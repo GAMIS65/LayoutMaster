@@ -1,6 +1,5 @@
 dialog {
     width: 500px;
-    height: 500px;
     border: solid 2px var(--border);
     background-color: var(--light-background);
     color: var(--text);
@@ -8,6 +7,43 @@ dialog {
     display: inline-block;
 }
 
-.setting {
-    display: inline-block;
+dialog button, select {
+    color: var(--text);
+    background-color: var(--border);
+    border: 2px solid var(--border);
+    border-radius: 5px;
 }
+
+dialog button, select:hover {
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+}
+
+.setting * {
+  display: inline-block;
+  margin: 0;
+}
+
+.setting-name {
+    margin-right: 6px;
+}
+
+.settings-container {
+    flex-direction: column;
+    height: 100%;
+    display: flex;
+}
+
+.close {
+    display: flex;
+    justify-content: end;
+}
+
+.close button {
+    background-color: #db2b45;
+}
+
+
