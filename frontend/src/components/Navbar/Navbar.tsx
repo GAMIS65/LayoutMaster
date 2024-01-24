@@ -3,6 +3,7 @@ import styles from "@/components/Navbar/Navbar.module.css"
 
 function Navbar() {
     return (
+        <div className={styles.navBar}>
         <nav>
             <div className={styles.left}>
                 <ul>
@@ -37,6 +38,7 @@ function Navbar() {
             </ul>
             </div>
         </nav>
+        </div>
     )
 }
 

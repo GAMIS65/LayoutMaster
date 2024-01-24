@@ -149,6 +149,6 @@
   width: 200px;
 }
 
-::placeholder {
+.input::placeholder {
   color: var(--text);
 }
