@@ -17,9 +17,14 @@ export default function Home() {
   const [inputLength, setInputLength] = useState(0);
   const [showKeyboard, setShowKeyboard] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [isClient, setIsClient] = useState(false)
   const [level, setLevel] = useState(() => {
-      const savedLevel = localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`);
-      return savedLevel !== null ? Number(savedLevel) : 0;
+    let savedLevel = 0;
+    if (typeof window !== 'undefined') {
+      // @ts-ignore
+      savedLevel = localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`);
+    }
+    return savedLevel !== null ? Number(savedLevel) : 0;
   });
   const [mistakes, setMistakes] = useState({});
   const [mistakeCount, setMistakeCount] = useState(0);
@@ -109,6 +114,7 @@ export default function Home() {
 }
 
 useEffect(() => {
+  setIsClient(true);
   setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
 
   if (inputLength === text.length - 5 || text.length === 0) {
@@ -119,8 +125,10 @@ useEffect(() => {
   return (
     <div className={styles.wrapper}>
       <Navbar />
-      {// @ts-ignore}
-      <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />}
+      {
+      // @ts-ignore}
+       isClient && <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />
+      }
       <LetterDisplay text={text} currentLetter={currentLetter} />
       <input className={styles.input} onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať'/>
       <button onClick={() => setSettings(!showSettings)}>Nastavenia</button>
