@@ -9,7 +9,7 @@ type LetterProgressProps = {
 function LetterProgress({currentLetter, progress,}: LetterProgressProps) {
     return (
         <>
-        <div className={styles["progress-container"]}>
+        <div className={styles.progressContainer}>
             <h1 className={styles.letter}>{currentLetter}</h1>
         </div>
             <ProgressBar value={progress} maxValue={30}/>

@@ -17,18 +17,18 @@ function Settings({ closeSettings, changeLayout, letters, currentLetter, changeL
         <>
             <dialog open className={styles.dialog}>
                 <div className={styles.close}>
-                    <button onClick={closeSettings}>X</button>
+                    <button className={styles.closeButton} onClick={closeSettings}>X</button>
                 </div>
 
-                <div className={styles["settings-container"]}>
+                <div className={styles.settingsContainer}>
                     <div className={styles.setting}>
-                        <p className={styles["setting-name"]}>Rozloženie klávesnice: </p>
+                        <p className={styles.settingName}>Rozloženie klávesnice: </p>
                         <LanguageSelection changeLayout={changeLayout} />
                     </div>
 
                     <div className={styles.setting}>
                         <p>Postup učenia:</p>
-                        <div className={styles["progress-container"]}>
+                        <div className={styles.progressContainer}>
                             <LetterSelection changeLevel={changeLevel} letters={letters} currentLetter={currentLetter} keyboard={keyboard}/>
                         </div>
                     </div>

@@ -122,7 +122,7 @@ useEffect(() => {
       {// @ts-ignore}
       <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />}
       <LetterDisplay text={text} currentLetter={currentLetter} />
-      <input onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať'/>
+      <input className={styles.input} onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať'/>
       <button onClick={() => setSettings(!showSettings)}>Nastavenia</button>
       <button onClick={() => setShowKeyboard(!showKeyboard)}>{showKeyboard ? 'Klávesnica: ZAPNUTÁ' : 'Klávesnica: VYPNUTÁ'} </button>
       <div className={styles["finger-colors-container"]}>

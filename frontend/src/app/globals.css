@@ -13,3 +13,7 @@
     --border: #313244;
     --text: #cdd6f4;
 }
+
+body {
+  background-color: var(--dark-background);
+}
