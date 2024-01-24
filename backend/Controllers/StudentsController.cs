@@ -78,6 +78,7 @@ namespace backend.Controllers
                 Username = student.Username,
                 Email = student.Email,
                 Password = BCrypt.Net.BCrypt.EnhancedHashPassword(student.Password, 13),
+                Role = Role.Student,
                 CreatedAt = DateTime.Now.ToUniversalTime(),
                 Mistakes = { },
                 GroupId = student.GroupId,

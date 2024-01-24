@@ -84,6 +84,7 @@ namespace backend.Controllers
                 Username = teacher.Username,
                 Email = teacher.Email,
                 Password = BCrypt.Net.BCrypt.EnhancedHashPassword(teacher.Password, 13),
+                Role = Role.Teacher,
                 CreatedAt = DateTime.Now.ToUniversalTime(),
                 Mistakes = { },
                 Groups = { },

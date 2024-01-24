@@ -3,6 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using backend.Data;
 using backend.Models;
 using backend.DTO.User;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using backend.Utils;
 
 namespace backend.Controllers
 {
@@ -11,9 +17,11 @@ namespace backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly DatabaseContext _context;
+        private IConfiguration _config;
 
-        public UsersController(DatabaseContext context)
+        public UsersController(DatabaseContext context, IConfiguration config)
         {
+            _config = config;
             _context = context;
         }
 
@@ -62,7 +70,8 @@ namespace backend.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult> PostUser(CreateUserDTO user)
+        [Route("register")]
+        public async Task<ActionResult> Register([FromBody] CreateUserDTO user)
         {
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == user.Username || u.Email == user.Email);
 
@@ -77,6 +86,7 @@ namespace backend.Controllers
                 Username = user.Username,
                 Email = user.Email,
                 Password = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Password, 13),
+                Role = Role.User,
                 CreatedAt = DateTime.Now.ToUniversalTime(),
                 Mistakes = { }
             };
@@ -84,6 +94,27 @@ namespace backend.Controllers
             _context.Users.Add(u);
             await _context.SaveChangesAsync();
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<ActionResult> Login([FromBody] LoginDTO user)
+        {
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+
+            if (existingUser == null)
+            {
+                return BadRequest("Invalid credentials");
+            }
+
+            if (!BCrypt.Net.BCrypt.EnhancedVerify(user.Password, existingUser.Password))
+            {
+                return BadRequest("Invalid credentials");
+            }
+
+            var TokenService = new TokenService(_config);
+            var token = TokenService.GenerateToken(existingUser);
+            return Ok(token);
         }
 
         // DELETE: api/Users/5

@@ -13,6 +13,8 @@ namespace backend.Models
         public required string Email { get; set; }
         [Required]
         public required string Password { get; set; }
+        [Required]
+        public required Role Role { get; set; }
         public DateTime CreatedAt { get; set; }
         public List<Mistake> Mistakes { get; set; } = new List<Mistake>();
     }
