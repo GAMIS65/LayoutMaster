@@ -1,7 +1,18 @@
+"use client"
 import Link from 'next/link'
 import styles from "@/components/Navbar/Navbar.module.css"
+import { cookies } from 'next/headers'
+import decodeToken from "@/utils/decodeToken"
+import { useEffect, useState } from 'react'
 
 function Navbar() {
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        if(document.cookie) {
+            setUsername(decodeToken(document.cookie).name)
+        }
+    }, [username])
     return (
         <div className={styles.navBar}>
         <nav>
@@ -29,12 +40,25 @@ function Navbar() {
             </div>
             <div className={styles.right}>
             <ul>
-                <li>
-                    <Link href={"/stats"} className={styles.navItem}>Štatistiky</Link>
-                </li>
-                <li>
-                    <Link href={"/login"} className={styles.navItem}>Prihlásiť sa</Link>
-                </li>
+                {username ? (
+                    <>
+                        <li>
+                            <Link href={"/stats"} className={styles.navItem}>Štatistiky</Link>
+                        </li>
+                        <li>
+                            <Link href={"/login"} className={styles.navItem}>{username}</Link>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                    <li>
+                        <Link href={"/register"} className={styles.navItem}>Registrovať sa</Link>
+                    </li>
+                    <li>
+                        <Link href={"/login"} className={styles.navItem}>Prihlásiť sa</Link>
+                    </li>
+                    </>
+                )}
             </ul>
             </div>
         </nav>

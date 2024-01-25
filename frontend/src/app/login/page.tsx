@@ -1,8 +1,65 @@
+"use client"
+
+import { useState } from "react";
+import styles from "./page.module.css"
+import Navbar from "@/components/Navbar/Navbar";
+import { useRouter } from "next/navigation";
+
+const backendURL = process.env.NEXT_PUBLIC_BACKEND;
+
 function LogIn() {
+    const [credentials, setCredentials] = useState({email: '', password: ''});
+    const router = useRouter();
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCredentials({
+        ...credentials,
+        [event.target.name]: event.target.value
+        });
+    };
+
+    const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const response = await fetch(`https://${backendURL}/api/users/login`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+    });
+
+    if (response.ok) {
+        const data = await response.text();
+        console.log(data);
+        if (data) {
+            document.cookie = `token=${data}; path=/`; 
+            router.push("/");
+        }
+  }
+
+  console.log(credentials);
+};
+
+
     return (
         <div>
-            <p># add login page</p>
+            <Navbar />
+            <div className={styles.container}>
+                <form onSubmit={handleSubmit}>
+                <label>
+                        <p>Email:</p>
+                        <input type="email" name="email" value={credentials.email} onChange={handleChange} required />
+                    </label>
+                    <label>
+                        <p>Heslo:</p>
+                        <input type="password" name="password" maxLength={64} value={credentials.password} onChange={handleChange} required />
+                    </label>
+                    <button type="submit" value="Prihlásiť sa">Prihlásiť sa</button>
+                </form>
+            </div>
         </div>
-    )}
+    );
+}
 
 export default LogIn
