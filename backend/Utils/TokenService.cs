@@ -20,7 +20,8 @@ namespace backend.Utils
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[] {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.Name, user.Username),
             new Claim("role", user.Role.ToString()),
         };
 
@@ -32,7 +33,5 @@ namespace backend.Utils
 
             return new JwtSecurityTokenHandler().WriteToken(Sectoken);
         }
-
-
     }
 }

@@ -42,14 +42,17 @@ namespace backend.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UserDTO>> GetUser(Guid id)
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<UserDTO>> GetUser()
         {
+            var userId = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
             if (_context.Users == null)
             {
                 return NotFound();
             }
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(userId);
 
             if (user == null)
             {
@@ -118,15 +121,18 @@ namespace backend.Controllers
         }
 
         // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(Guid id)
+        [Authorize]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser()
         {
+            var userId = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
             if (_context.Users == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
                 return NotFound();
