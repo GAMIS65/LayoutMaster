@@ -67,7 +67,19 @@ namespace backend
             builder.Services.AddDbContext<DatabaseContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("UsersDb")));
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("MyPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
+
+            app.UseCors("MyPolicy");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

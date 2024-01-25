@@ -9,6 +9,7 @@ using System.Text;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using backend.Utils;
+using backend.Migrations;
 
 namespace backend.Controllers
 {
@@ -23,22 +24,6 @@ namespace backend.Controllers
         {
             _config = config;
             _context = context;
-        }
-
-        // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsers()
-        {
-            var users = await _context.Users
-            .Select(user => new UserDTO
-            {
-                Id = user.Id,
-                Username = user.Username,
-                CreatedAt = user.CreatedAt,
-                Mistakes = user.Mistakes,
-            })
-            .ToListAsync();
-            return Ok(users);
         }
 
         // GET: api/Users/5
@@ -70,8 +55,6 @@ namespace backend.Controllers
             return Ok(u);
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Route("register")]
         public async Task<ActionResult> Register([FromBody] CreateUserDTO user)
@@ -83,13 +66,19 @@ namespace backend.Controllers
                 return BadRequest("User with this username or email already exists");
             }
 
+
+            if (!Enum.TryParse(user.Role, out Models.Role role))
+            {
+                return BadRequest("Invalid role");
+            }
+
             var u = new User()
             {
                 Id = Guid.NewGuid(),
                 Username = user.Username,
                 Email = user.Email,
                 Password = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Password, 13),
-                Role = Role.User,
+                Role = role,
                 CreatedAt = DateTime.Now.ToUniversalTime(),
                 Mistakes = { }
             };
@@ -120,7 +109,6 @@ namespace backend.Controllers
             return Ok(token);
         }
 
-        // DELETE: api/Users/5
         [Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteUser()

@@ -1,9 +1,12 @@
-﻿namespace backend.DTO.User
+﻿using backend.Models;
+
+namespace backend.DTO.User
 {
     public class CreateUserDTO
     {
         public required string Username { get; set; }
         public required string Email { get; set; }
         public required string Password { get; set; }
+        public required string Role { get; set; }
     }
 }
