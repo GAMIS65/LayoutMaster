@@ -17,3 +17,14 @@
 body {
   background-color: var(--dark-background);
 }
+
+button {
+  background-color: var(--border);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+
+button:hover {
+  cursor: pointer;
+}
