@@ -10,6 +10,8 @@ import Keyboard from '../components/Keyboard/Keyboard';
 import Navbar from '@/components/Navbar/Navbar'
 import Settings from '@/components/Settings/Settings'
 
+const backendURL = process.env.NEXT_PUBLIC_BACKEND;
+
 export default function Home() {
   const [text, setText] = useState('');
   const [layout, setLayout] = useState(englishQwertyAnsi);
@@ -68,7 +70,6 @@ export default function Home() {
       const newMistake = {...mistakes};
       // @ts-ignore
       newMistake[text[currentLetter]] = (newMistake[text[currentLetter]] || 0) + 1;
-      console.log(newMistake);
 
       if (progress > 0) {
         setProgress((progress) => progress -= 3);
@@ -78,19 +79,21 @@ export default function Home() {
       setMistakeCount((mistakeCount) => mistakeCount += 1);
 
       if (mistakeCount >= 15) {
-        // TODO change this path to a real api endpoint
-        // TODO Make sure the user is logged in
-        fetch('http://127.0.0.1:8080/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(mistakes),
-        });
+        if (backendURL && document.cookie.length > "token=".length) {
+          fetch(`http://${backendURL}/api/submit/mistakes`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': document.cookie.replace("token=", "")
+            },
+            body: JSON.stringify({
+              mistakes: mistakes,
+            }),
+          });
+        }
+        setMistakes({});
+        setMistakeCount(0);
       }
-
-      setMistakes({});
-      setMistakeCount(0);
     }
   };
 

@@ -4,13 +4,22 @@ import styles from "@/components/Navbar/Navbar.module.css"
 import { cookies } from 'next/headers'
 import decodeToken from "@/utils/decodeToken"
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 function Navbar() {
     const [username, setUsername] = useState("");
+    const [role, setRole] = useState("");
+    const router = useRouter();
+
+    const logout = () => {
+        document.cookie = "token= ;";
+        router.push("/login");
+    }
 
     useEffect(() => {
-        if(document.cookie) {
-            setUsername(decodeToken(document.cookie).name)
+        if(document.cookie && document.cookie.length > "token=".length) {
+            setUsername(decodeToken(document.cookie).name);
+            setRole(decodeToken(document.cookie).role);
         }
     }, [username])
     return (
@@ -40,10 +49,20 @@ function Navbar() {
             </div>
             <div className={styles.right}>
             <ul>
+                {role === "Teacher" ? (
+                    <>
+                        <li>
+                            <Link href={"/groups"} className={styles.navItem}>Skupiny</Link>
+                        </li>
+                    </>
+                ) : ""}
                 {username ? (
                     <>
                         <li>
                             <Link href={"/stats"} className={styles.navItem}>Štatistiky</Link>
+                        </li>
+                        <li>
+                            <Link href={"/login"} onClick={logout} className={styles.navItem}>Odhlásiť sa</Link>
                         </li>
                         <li>
                             <Link href={"/login"} className={styles.navItem}>{username}</Link>
