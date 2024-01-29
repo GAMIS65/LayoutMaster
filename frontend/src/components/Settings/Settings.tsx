@@ -4,14 +4,13 @@ import styles from './Settings.module.css'
 
 type SettingsProps = {
     closeSettings: () => void
-    changeLayout: React.Dispatch<React.SetStateAction<Keyboard>>; 
     letters: Array<string>,
     currentLetter: string,
     changeLevel: (newLevel: number, layout: Keyboard) => void,
     keyboard: Keyboard
 }
 
-function Settings({ closeSettings, changeLayout, letters, currentLetter, changeLevel, keyboard }: SettingsProps) {
+function Settings({ closeSettings, letters, currentLetter, changeLevel, keyboard }: SettingsProps) {
 
     return (
         <>
@@ -23,7 +22,7 @@ function Settings({ closeSettings, changeLayout, letters, currentLetter, changeL
                 <div className={styles.settingsContainer}>
                     <div className={styles.setting}>
                         <p className={styles.settingName}>Rozloženie klávesnice: </p>
-                        <LanguageSelection changeLayout={changeLayout} />
+                        <LanguageSelection  />
                     </div>
 
                     <div className={styles.setting}>

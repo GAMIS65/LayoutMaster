@@ -165,7 +165,6 @@ useEffect(() => {
     <div className={styles.wrapper}>
       <Navbar />
       {
-      // @ts-ignore}
        isClient && <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />
       }
       <LetterDisplay text={text} currentLetter={currentLetter} />
@@ -179,8 +178,7 @@ useEffect(() => {
         {showKeyboard && <Keyboard keyboardLayout={keyboardLayout} text={text} currentLetter={currentLetter} />}
       </div>
         {
-          // @ts-ignore
-          showSettings && <Settings closeSettings={() => setSettings(false)} changeLayout={setLayout} letters={keyboardData.stages} currentLetter={keyboardData.stages[level]} changeLevel={changeLevel} keyboard={keyboardData}/>
+          showSettings && <Settings closeSettings={() => setSettings(false)} letters={keyboardData.stages} currentLetter={keyboardData.stages[level]} changeLevel={changeLevel} keyboard={keyboardData}/>
         }
       </div>
   );
