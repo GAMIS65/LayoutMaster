@@ -10,11 +10,16 @@ import Keyboard from '../components/Keyboard/Keyboard';
 import Settings from '@/components/Settings/Settings'
 import Navbar from '@/components/Navbar/Navbar';
 
+import Qwerty from '@/keyboards/qwerty-english-ansi.json'
+import Dvorak from '@/keyboards/dvorak-english-ansi.json'
+import QwertzSlovak from '@/keyboards/qwertz-slovak-ansi.json'
+import { useLayoutStore } from '@/store/useLayoutName';
+
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
 export default function Home() {
   const [text, setText] = useState('');
-  const [layout, setLayout] = useState(englishQwertyAnsi);
+  const {layoutName, setLayoutName, layout, setLayout} = useLayoutStore();
   const [currentLetter, setCurrentLetter] = useState(0);
   const [inputLength, setInputLength] = useState(0);
   const [showKeyboard, setShowKeyboard] = useState(true);
@@ -130,12 +135,31 @@ export default function Home() {
 
 useEffect(() => {
   setIsClient(true);
+    if (layoutName) {
+      switch (layoutName) {
+      case 'qwerty_ansi_english':
+        setLayout(Qwerty);
+        setLayoutName("qwerty_ansi_english")
+        break;
+      case 'qwertz_ansi_slovak':
+        setLayout(QwertzSlovak);
+        setLayoutName("qwertz_ansi_slovak")
+        break;
+      case 'dvorak_ansi_english':
+        setLayout(Dvorak);
+        setLayoutName("dvorak_ansi_english")
+        break;
+      default:
+        break;
+    }
+  };
+
   setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
 
   if (inputLength === text.length - 5 || text.length === 0) {
       setText((text) => text + generateLetters(3, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
     }
-  }, [text, currentLetter, inputLength, level, keyboardData.stages, layout]);
+  }, [text, currentLetter, inputLength, level, keyboardData.stages, layout, layoutName, setLayoutName, setLayout]);
 
   return (
     <div className={styles.wrapper}>

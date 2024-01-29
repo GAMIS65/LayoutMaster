@@ -2,26 +2,29 @@ import React, { useState, useEffect } from "react";
 import Qwerty from '@/keyboards/qwerty-english-ansi.json'
 import Dvorak from '@/keyboards/dvorak-english-ansi.json'
 import QwertzSlovak from '@/keyboards/qwertz-slovak-ansi.json'
+import { useLayoutStore } from "@/store/useLayoutName";
 
-type LanguageSelectionProps = {
-  changeLayout: React.Dispatch<React.SetStateAction<Keyboard>>; 
-}
 
-function LanguageSelection({changeLayout}: LanguageSelectionProps) {
+function LanguageSelection() {
   const [custom, setCustom] = useState(false);
+
+  const {layoutName, setLayoutName, setLayout, layout} = useLayoutStore();
 
   const handleLayoutChange = (event: any) => {
     const layoutName = event.target.value;
     switch (layoutName) {
       case 'Qwerty ANSI':
-        changeLayout(Qwerty);
+        setLayout(Qwerty);
+        setLayoutName("qwerty_ansi_english")
         setCustom(false);
         break;
       case 'Qwertz SK ANSI':
-        changeLayout(QwertzSlovak);
+        setLayout(QwertzSlovak);
+        setLayoutName("qwertz_ansi_slovak")
         break;
       case 'Dvorak ANSI':
-        changeLayout(Dvorak);
+        setLayout(Dvorak);
+        setLayoutName("dvorak_ansi_english")
         setCustom(false);
         break;
       case 'Vlastný':
@@ -30,7 +33,8 @@ function LanguageSelection({changeLayout}: LanguageSelectionProps) {
           try {
             const layout = JSON.parse(savedLayout);
             if (isValidLayout(layout)) {
-              changeLayout(layout);
+              setLayout(layout);
+              setLayoutName(`${layout.name}_${layout.standard}_${layout.language}`)
             } else {
               console.error("Invalid layout structure in localStorage.");
             }
@@ -43,7 +47,7 @@ function LanguageSelection({changeLayout}: LanguageSelectionProps) {
         setCustom(true);
         break;
       default:
-        changeLayout(Qwerty);
+        setLayout(Qwerty);
         setCustom(false);
     }
   };
@@ -81,7 +85,7 @@ function handleFileChange(event: any) {
       // @ts-ignore
       const layout = JSON.parse(event.target.result);
       if (isValidLayout(layout)) {
-        changeLayout(layout);
+        setLayout(layout);
         localStorage.setItem('layout', JSON.stringify(layout));
       } else {
         console.error("Invalid layout structure.");

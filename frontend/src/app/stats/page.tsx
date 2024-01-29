@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import english from "@/keyboards/qwerty-english-ansi.json";
 import { useRouter } from "next/navigation";
 import ProgressBar from "@/components/LetterProgress/ProgressBar/ProgressBar";
 import Navbar from "@/components/Navbar/Navbar";
+import { useLayoutStore } from "@/store/useLayoutName";
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
 
@@ -123,43 +123,46 @@ function Stats() {
     const [data, setData] = useState<Data>();
     const [mistakes, setMistakes] = useState({});
     const [isLoading, setLoading] = useState(true);
+    const {layoutName, layout} = useLayoutStore();
     const router = useRouter();
 
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://${backendURL}/api/stats?layoutName=qwerty_ansi_english`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${document.cookie.replace("token=", "")}`,
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else if (res.status === 404) {
-          return <h1>no data</h1>;
-        } else if (res.status === 401) {
-            router.push("/login");
-          return Promise.reject("some other error: " + res.status);
-        }
+    if (layoutName) {
+      fetch(`https://${backendURL}/api/stats?layoutName=${layoutName}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${document.cookie.replace("token=", "")}`,
+        },
       })
-      .then((data) => {
-        if (data.length === 0) {
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else if (res.status === 404) {
+            return <h1>no data</h1>;
+          } else if (res.status === 401) {
+              router.push("/login");
+            return Promise.reject("some other error: " + res.status);
+          }
+        })
+        .then((data) => {
+          if (data.length === 0) {
+            setData(undefined);
+          } else {
+            setData(data);
+            setMistakes(transformDataMistakes(data));
+          }
+          setLoading(false);
+        })
+        .catch((error) => {
           setData(undefined);
-        } else {
-          setData(data);
-          setMistakes(transformDataMistakes(data));
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        setData(undefined);
-        setLoading(false);
-      });
-  }, [router]);
+          setLoading(false);
+        });
+    }
+  }, [layoutName, router]);
 
 
   return (
@@ -169,7 +172,7 @@ function Stats() {
         {!isLoading && !data && <h1>Nenašlí sa žiadne Štatistiky</h1>}
         {data && (
             <div className={styles.container}>
-                <Keyboard keyboardLayout={english.layout} mistakes={mistakes} />
+                <Keyboard keyboardLayout={layout.layout} mistakes={mistakes} />
                 <div className={styles.statsDetailsContainer}>
                     <StatsDetails mistakes={mistakes} data={data} />
 
