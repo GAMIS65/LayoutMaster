@@ -34,7 +34,7 @@ namespace backend.Controllers
                 Id = teacher.Id,
                 Username = teacher.Username,
                 CreatedAt = teacher.CreatedAt,
-                Mistakes = teacher.Mistakes,
+                Stats = teacher.Stats,
                 Groups = teacher.Groups,
             })
             .ToListAsync();
@@ -58,10 +58,10 @@ namespace backend.Controllers
 
             var t = new TeacherDTO()
             {
-                Id = Guid.NewGuid(),
+                Id = teacher.Id,
                 Username = teacher.Username,
-                CreatedAt = DateTime.Now.ToUniversalTime(),
-                Mistakes = { }
+                CreatedAt = teacher.CreatedAt,
+                Stats = teacher.Stats
             };
 
             return Ok(t);
@@ -86,7 +86,7 @@ namespace backend.Controllers
                 Password = BCrypt.Net.BCrypt.EnhancedHashPassword(teacher.Password, 13),
                 Role = Role.Teacher,
                 CreatedAt = DateTime.Now.ToUniversalTime(),
-                Mistakes = { },
+                Stats = { },
                 Groups = { },
             };
 

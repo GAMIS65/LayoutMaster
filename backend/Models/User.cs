@@ -16,6 +16,6 @@ namespace backend.Models
         [Required]
         public required Role Role { get; set; }
         public DateTime CreatedAt { get; set; }
-        public List<Mistake> Mistakes { get; set; } = new List<Mistake>();
+        public List<Stat> Stats { get; set; } = new List<Stat>();
     }
 }

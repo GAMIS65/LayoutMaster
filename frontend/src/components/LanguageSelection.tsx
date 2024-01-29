@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Qwerty from '@/keyboards/qwerty-english-ansi.json'
 import Dvorak from '@/keyboards/dvorak-english-ansi.json'
+import QwertzSlovak from '@/keyboards/qwertz-slovak-ansi.json'
 
 type LanguageSelectionProps = {
   changeLayout: React.Dispatch<React.SetStateAction<Keyboard>>; 
@@ -12,11 +13,14 @@ function LanguageSelection({changeLayout}: LanguageSelectionProps) {
   const handleLayoutChange = (event: any) => {
     const layoutName = event.target.value;
     switch (layoutName) {
-      case 'Qwerty':
+      case 'Qwerty ANSI':
         changeLayout(Qwerty);
         setCustom(false);
         break;
-      case 'Dvorak':
+      case 'Qwertz SK ANSI':
+        changeLayout(QwertzSlovak);
+        break;
+      case 'Dvorak ANSI':
         changeLayout(Dvorak);
         setCustom(false);
         break;
@@ -92,8 +96,9 @@ function handleFileChange(event: any) {
   return (
     <div>
       <select onChange={handleLayoutChange}>
-        <option value="Qwerty">Qwerty</option>
-        <option value="Dvorak">Dvorak</option>
+        <option value="Qwerty ANSI">Qwerty ANSI</option>
+        <option value="Qwertz SK ANSI">Qwertz SK ANSI</option>
+        <option value="Dvorak ANSI">Dvorak ANSI</option>
         <option value="Vlastný">Vlastný</option>
       </select>
       {custom && <input type="file" onChange={handleFileChange} />}

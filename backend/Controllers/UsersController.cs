@@ -29,15 +29,21 @@ namespace backend.Controllers
         // GET: api/Users/5
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<UserDTO>> GetUser()
+        public async Task<ActionResult<User>> GetUser()
         {
             var userId = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var stats = await _context.Stats.Where(u => u.UserId == userId).ToListAsync();
 
             if (_context.Users == null)
             {
                 return NotFound();
             }
-            var user = await _context.Users.FindAsync(userId);
+            var user = await _context.Users
+                         .Include(u => u.Stats)
+                         .ThenInclude(s => s.Mistakes)
+                         .ThenInclude(s => s.MistakeDetails)
+                         .FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)
             {
@@ -46,10 +52,10 @@ namespace backend.Controllers
 
             var u = new UserDTO()
             {
-                Id = Guid.NewGuid(),
+                Id = user.Id,
                 Username = user.Username,
-                CreatedAt = DateTime.Now.ToUniversalTime(),
-                Mistakes = { }
+                CreatedAt = user.CreatedAt,
+                Stats = user.Stats
             };
 
             return Ok(u);
@@ -80,7 +86,7 @@ namespace backend.Controllers
                 Password = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Password, 13),
                 Role = role,
                 CreatedAt = DateTime.Now.ToUniversalTime(),
-                Mistakes = { }
+                Stats = { }
             };
 
             _context.Users.Add(u);

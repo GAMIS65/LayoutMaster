@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using backend.Data;
@@ -11,9 +12,11 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240127100552_addStats")]
+    partial class addStats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace backend.Migrations
 
                     b.HasIndex("StatId");
 
-                    b.ToTable("Mistakes");
+                    b.ToTable("Mistake");
                 });
 
             modelBuilder.Entity("backend.Models.MistakeValue", b =>
@@ -186,11 +189,13 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.MistakeValue", b =>
                 {
-                    b.HasOne("backend.Models.Mistake", null)
+                    b.HasOne("backend.Models.Mistake", "Mistake")
                         .WithMany("MistakeDetails")
                         .HasForeignKey("MistakeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Mistake");
                 });
 
             modelBuilder.Entity("backend.Models.Stat", b =>

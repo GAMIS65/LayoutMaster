@@ -8,26 +8,18 @@ namespace backend.Models
     public class Mistake
     {
         [Key]
-        [Required]
         public Guid Id { get; set; }
-
-        [Required]
         [ForeignKey("User")]
         public Guid UserId { get; set; }
-
-        [Required]
-        public required string LayoutName { get; set; }
-
-        public required ICollection<MistakeDetail> MistakeDetails { get; set; }
+        [ForeignKey("Stat")]
+        public Guid StatId { get; set; }
+        public List<MistakeValue> MistakeDetails { get; set; } = new List<MistakeValue>();
     }
 
-    public class MistakeDetail
+    public class MistakeValue
     {
         [Key]
-        [Required]
         public Guid Id { get; set; }
-
-        [Required]
         [ForeignKey("Mistake")]
         public Guid MistakeId { get; set; }
 
@@ -36,7 +28,5 @@ namespace backend.Models
 
         [Required]
         public int MistakeCount { get; set; }
-
-        public Mistake? Mistake { get; set; }
     }
 }

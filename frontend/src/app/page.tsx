@@ -7,8 +7,8 @@ import LetterDisplay from '../components/LetterDisplay/LetterDisplay'
 import FingerColors from '../components/FingerColors/FingerColors'
 import LetterProgress from '../components/LetterProgress/LetterProgress';
 import Keyboard from '../components/Keyboard/Keyboard';
-import Navbar from '@/components/Navbar/Navbar'
 import Settings from '@/components/Settings/Settings'
+import Navbar from '@/components/Navbar/Navbar';
 
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
@@ -29,7 +29,7 @@ export default function Home() {
     return savedLevel !== null ? Number(savedLevel) : 0;
   });
   const [mistakes, setMistakes] = useState({});
-  const [mistakeCount, setMistakeCount] = useState(0);
+  const [charactersTypedCount, setcharactersTypedCount] = useState(0);
   const [showSettings, setSettings] = useState(false);
 
   const keyboardData = layout;
@@ -49,6 +49,7 @@ export default function Home() {
     } else if (lastEnteredLetter === text[currentLetter]) {
       setCurrentLetter(inputValue.length);
       setInputLength(inputValue.length);
+      setcharactersTypedCount(charactersTypedCount => charactersTypedCount + 1);
 
       if (keyboardData.stages[level]) {
         if (lastEnteredLetter === keyboardData.stages[level] || lastEnteredLetter === keyboardData.stages[level].toUpperCase()) {
@@ -64,6 +65,32 @@ export default function Home() {
             changeLevel(newLevel, keyboardData);
           }
         }
+      if (charactersTypedCount >= 15) {
+      let result = [];
+          for(let key in mistakes) {
+              result.push({
+                  "key": key,
+                  //@ts-ignore
+                  "value": mistakes[key]
+              });
+          }
+
+        if (backendURL && document.cookie.length > "token=".length) {
+          fetch(`https://${backendURL}/api/stats`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${document.cookie.replace("token=", "")}`
+            },
+            body: JSON.stringify({
+              layoutName: `${layout.name}_${layout['layout-standard']}_${layout.language}`,
+              mistakeValues: result,
+            }),
+          });
+        }
+        setMistakes({});
+        setcharactersTypedCount(0);
+      }
       }
     } else {
       event.currentTarget.value = inputValue.slice(0, inputValue.length - 1);
@@ -76,24 +103,9 @@ export default function Home() {
       }
 
       setMistakes(newMistake);
-      setMistakeCount((mistakeCount) => mistakeCount += 1);
+      setcharactersTypedCount((mistakeCount) => mistakeCount += 1);
 
-      if (mistakeCount >= 15) {
-        if (backendURL && document.cookie.length > "token=".length) {
-          fetch(`http://${backendURL}/api/submit/mistakes`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': document.cookie.replace("token=", "")
-            },
-            body: JSON.stringify({
-              mistakes: mistakes,
-            }),
-          });
-        }
-        setMistakes({});
-        setMistakeCount(0);
-      }
+      
     }
   };
 
@@ -121,7 +133,7 @@ useEffect(() => {
   setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
 
   if (inputLength === text.length - 5 || text.length === 0) {
-      setText((text) => text + generateLetters(5, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
+      setText((text) => text + generateLetters(3, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
     }
   }, [text, currentLetter, inputLength, level, keyboardData.stages, layout]);
 

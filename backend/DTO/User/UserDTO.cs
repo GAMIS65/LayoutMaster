@@ -7,6 +7,6 @@ namespace backend.DTO.User
         public Guid Id { get; set; }
         public string Username { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
-        public List<Mistake> Mistakes { get; set; } = new List<Mistake>();
+        public required List<Stat> Stats { get; set; }
     }
 }

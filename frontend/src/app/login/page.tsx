@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import styles from "./page.module.css"
-import Navbar from "@/components/Navbar/Navbar";
 import { useRouter } from "next/navigation";
+import Navbar from "@/components/Navbar/Navbar";
 
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
