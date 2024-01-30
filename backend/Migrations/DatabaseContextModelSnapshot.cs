@@ -43,7 +43,7 @@ namespace backend.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Group");
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("backend.Models.Mistake", b =>

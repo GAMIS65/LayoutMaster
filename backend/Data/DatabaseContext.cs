@@ -13,5 +13,6 @@ namespace backend.Data
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Stat> Stats { get; set; }
         public DbSet<Mistake> Mistakes { get; set; }
+        public DbSet<Group> Groups { get; set; }    
     }
 }
