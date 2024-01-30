@@ -12,6 +12,7 @@ interface LayoutState {
 
 export const useLayoutStore = create<LayoutState>()(
   persist(
+    // @ts-ignore
     (set) => ({
       layoutName: "",
       setLayoutName: (newLayoutName: string) => set({ layoutName: newLayoutName }),

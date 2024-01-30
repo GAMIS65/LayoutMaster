@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation";
+import fetchBackend from "@/utils/fetchBackend";
 import Navbar from "@/components/Navbar/Navbar";
 
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
@@ -19,28 +20,18 @@ function LogIn() {
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const response = await fetch(`https://${backendURL}/api/users/login`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-    });
+        event.preventDefault();
+        try {
+            const data = await fetchBackend("/users/login", "POST", undefined, credentials);
+                if (data) {
+                    document.cookie = `token=${data.token}; path=/`; 
+                    router.push("/");       
+                }
+        } catch (error) {
+            console.error(error);
+        } 
 
-    if (response.ok) {
-        const data = await response.text();
-        console.log(data);
-        if (data) {
-            document.cookie = `token=${data}; path=/`; 
-            router.push("/");
-        }
-  }
-
-  console.log(credentials);
-};
-
+    }
 
     return (
         <div>

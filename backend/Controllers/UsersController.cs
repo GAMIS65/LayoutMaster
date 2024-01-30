@@ -112,7 +112,7 @@ namespace backend.Controllers
 
             var TokenService = new TokenService(_config);
             var token = TokenService.GenerateToken(existingUser);
-            return Ok(token);
+            return Ok(new { token = token });
         }
 
         [Authorize]

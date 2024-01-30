@@ -4,6 +4,6 @@ namespace backend.DTO.Student
 {
     public class CreateStudentDTO : CreateUserDTO
     {
-        public Guid GroupId { get; set; }
+        public string GroupCode { get; set; }
     }
 }

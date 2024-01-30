@@ -75,7 +75,7 @@ function Register() {
                     </label>
                     {
                     credentials.role === "Student" && <label>
-                        <p>Kód vašej triedy:</p>
+                        <p>Heslo vašej triedy:</p>
                         <input type="text" name="groupCode" maxLength={64} value={credentials.groupCode} onChange={handleChange} required />
                     </label>
                     }

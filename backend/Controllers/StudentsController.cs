@@ -30,6 +30,13 @@ namespace backend.Controllers
                 return BadRequest("User with this username or email already exists");
             }
 
+            var group = await _context.Groups.FirstOrDefaultAsync(g => g.InviteCode == student.GroupCode);
+
+            if (group == null) 
+            {
+                return BadRequest("Invalid invite code");
+            }
+
             var s = new Student()
             {
                 Id = Guid.NewGuid(),
@@ -39,7 +46,7 @@ namespace backend.Controllers
                 Role = Role.Student,
                 CreatedAt = DateTime.Now.ToUniversalTime(),
                 Stats = { },
-                GroupId = student.GroupId,
+                GroupId = group.Id,
             };
 
             _context.Students.Add(s);

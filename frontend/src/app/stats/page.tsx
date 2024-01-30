@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import ProgressBar from "@/components/LetterProgress/ProgressBar/ProgressBar";
 import Navbar from "@/components/Navbar/Navbar";
 import { useLayoutStore } from "@/store/useLayoutName";
+import fetchBackend from "@/utils/fetchBackend";
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
 
@@ -71,6 +72,7 @@ function Keyboard({ keyboardLayout, mistakes }: KeyboardProps) {
 }
 
 function transformDataMistakes(data: Data): { [key: string]: number } {
+  //@ts-ignore
   return data.mistakeValues.reduce(
     (values, mistake) => {
         const key = mistake.value.key;
@@ -130,39 +132,27 @@ function Stats() {
   useEffect(() => {
     setLoading(true);
     if (layoutName) {
-      fetch(`https://${backendURL}/api/stats?layoutName=${layoutName}`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${document.cookie.replace("token=", "")}`,
-        },
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else if (res.status === 404) {
-            return <h1>no data</h1>;
-          } else if (res.status === 401) {
-              router.push("/login");
-            return Promise.reject("some other error: " + res.status);
-          }
-        })
-        .then((data) => {
-          if (data.length === 0) {
-            setData(undefined);
-          } else {
-            setData(data);
-            setMistakes(transformDataMistakes(data));
-          }
-          setLoading(false);
-        })
-        .catch((error) => {
-          setData(undefined);
-          setLoading(false);
-        });
+        const fetchData = async () => {
+            try {
+                const data = await fetchBackend(`/stats?layoutName=${layoutName}`, 'GET', document.cookie.replace("token=", ""));
+                if (data.length === 0) {
+                    setData(undefined);
+                } else {
+                    setData(data);
+                    setMistakes(transformDataMistakes(data));
+                }
+            } catch (error: any) {
+                    console.error(`An error occurred: ${error.message}`);
+                setData(undefined);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
     }
-  }, [layoutName, router]);
+}, [layoutName, router]);
+
 
 
   return (
