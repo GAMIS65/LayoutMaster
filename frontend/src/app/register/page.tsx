@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar/Navbar";
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
 function Register() {
-    const [credentials, setCredentials] = useState({username: '', email: '', password: '', role: 'User', groupCode: ''});
+    const [credentials, setCredentials] = useState({username: '', email: '', password: '', role: 'User', groupName: "", groupCode: ''});
     const router = useRouter();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,10 +74,18 @@ function Register() {
                         </select>
                     </label>
                     {
-                    credentials.role === "Student" && <label>
-                        <p>Heslo vašej triedy:</p>
-                        <input type="text" name="groupCode" maxLength={64} value={credentials.groupCode} onChange={handleChange} required />
+                    credentials.role === "Student" ? 
+                    (
+                    <div>
+                    <label>
+                        <p>Meno vašej skupiny:</p>
+                        <input type="text" name="groupName" maxLength={64} value={credentials.groupName} onChange={handleChange} required />
                     </label>
+                        <label>
+                            <p>Heslo vašej skupiny:</p>
+                            <input type="text" name="groupCode" maxLength={64} value={credentials.groupCode} onChange={handleChange} required />
+                        </label>
+                    </div>) : ""
                     }
                     <button type="submit" value="Prihlásiť sa">Prihlásiť sa</button>
                 </form>

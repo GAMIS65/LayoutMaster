@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import fetchBackend from "@/utils/fetchBackend";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 type Student = {
     id: string,
@@ -45,7 +46,9 @@ function GroupPage({params}: {params: {slug: string}}) {
             <Navbar />
             {students && students.map((student) => {
                 return (
-                    <h2 key={student.id}>{student.username}</h2>
+                    <Link href={`/stats?id=${student.id}`} key={student.id}> 
+                            <h2 key={student.id}>{student.username}</h2>
+                    </Link>
                 )
             })}
         </div>

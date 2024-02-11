@@ -154,6 +154,9 @@ namespace backend.Migrations
                     b.Property<Guid>("GroupId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("TeacherId")
+                        .HasColumnType("uuid");
+
                     b.HasIndex("GroupId");
 
                     b.HasDiscriminator().HasValue("Student");

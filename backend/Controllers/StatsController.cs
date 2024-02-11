@@ -108,5 +108,51 @@ namespace backend.Controllers
 
             return Ok(s);
         }
+
+        [Authorize]
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<GetStatsDTO>> GetUserStats(string layoutName, Guid userId)
+        {
+            Guid id = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var x = await _context.Students.FirstOrDefaultAsync(u => u.TeacherId == id);
+
+            if (x == null)
+            {
+                return Unauthorized();
+            }
+
+            var stats = await _context.Stats
+                .Include(s => s.Mistakes)
+                .ThenInclude(s => s.MistakeDetails)
+                .FirstOrDefaultAsync(s => s.LayoutName == layoutName && s.UserId == userId);
+
+            if (stats == null)
+            {
+                return NotFound("You don't have any stats for this layout");
+            }
+
+            List<MistakeValueDTO> mistakes = new List<MistakeValueDTO>();
+
+            foreach (var mistake in stats.Mistakes)
+            {
+                foreach (var mistakeDetail in mistake.MistakeDetails)
+                {
+                    MistakeValueDTO values = new MistakeValueDTO();
+                    values.Value = new KeyValuePair<char, int>(mistakeDetail.MistakeKey, mistakeDetail.MistakeCount);
+
+                    mistakes.Add(values);
+                }
+            }
+
+            var s = new GetStatsDTO()
+            {
+                LayoutName = stats.LayoutName,
+                CharactersTyped = stats.CharactersTyped,
+                MistakeValues = mistakes
+            };
+
+            return Ok(s);
+        }
     }
 }

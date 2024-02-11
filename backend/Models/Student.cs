@@ -8,5 +8,8 @@ namespace backend.Models
         [Required]
         [ForeignKey("Group")]
         public Guid GroupId { get; set; }
+        [Required]
+        [ForeignKey("User")]
+        public Guid TeacherId { get; set; }
     }
 }

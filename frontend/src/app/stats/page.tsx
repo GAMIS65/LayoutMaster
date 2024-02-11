@@ -6,6 +6,7 @@ import ProgressBar from "@/components/LetterProgress/ProgressBar/ProgressBar";
 import Navbar from "@/components/Navbar/Navbar";
 import { useLayoutStore } from "@/store/useLayoutName";
 import fetchBackend from "@/utils/fetchBackend";
+import { useSearchParams } from 'next/navigation'
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
 
@@ -127,6 +128,8 @@ function Stats() {
     const [isLoading, setLoading] = useState(true);
     const {layoutName, layout} = useLayoutStore();
     const router = useRouter();
+    const idParams = useSearchParams()
+    const id = idParams.get('id')
 
 
   useEffect(() => {
@@ -134,7 +137,7 @@ function Stats() {
     if (layoutName) {
         const fetchData = async () => {
             try {
-                const data = await fetchBackend(`/stats?layoutName=${layoutName}`, 'GET', document.cookie.replace("token=", ""));
+                const data = await fetchBackend(`/stats${id ? `/${id}`: ""}?layoutName=${layoutName}`, 'GET', document.cookie.replace("token=", ""));
                 if (data.length === 0) {
                     setData(undefined);
                 } else {
