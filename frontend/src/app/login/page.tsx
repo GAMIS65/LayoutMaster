@@ -5,12 +5,14 @@ import styles from "./page.module.css"
 import { useRouter } from "next/navigation";
 import fetchBackend from "@/utils/fetchBackend";
 import Navbar from "@/components/Navbar/Navbar";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
 function LogIn() {
     const [credentials, setCredentials] = useState({email: '', password: ''});
     const router = useRouter();
+    const [error, setError] = useState("");
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCredentials({
@@ -27,8 +29,8 @@ function LogIn() {
                     document.cookie = `token=${data.token}; path=/`; 
                     router.push("/");       
                 }
-        } catch (error) {
-            console.error(error);
+        } catch (error: any) {
+            setError(error.toString());
         } 
 
     }
@@ -37,6 +39,7 @@ function LogIn() {
         <div>
             <Navbar />
             <div className={styles.container}>
+                {error && <ErrorMessage text={error}/>}
                 <form onSubmit={handleSubmit}>
                 <label>
                         <p>Email:</p>

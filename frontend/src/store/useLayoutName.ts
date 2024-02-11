@@ -14,7 +14,7 @@ export const useLayoutStore = create<LayoutState>()(
   persist(
     // @ts-ignore
     (set) => ({
-      layoutName: "",
+      layoutName: "qwerty-ansi-english",
       setLayoutName: (newLayoutName: string) => set({ layoutName: newLayoutName }),
       layout: qwerty,
       setLayout: (newLayout: Keyboard) => set({ layout: newLayout})

@@ -154,7 +154,7 @@ function Stats() {
 
         fetchData();
     }
-}, [layoutName, router]);
+}, [id, layoutName, router]);
 
 
 

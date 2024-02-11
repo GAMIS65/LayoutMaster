@@ -69,13 +69,13 @@ namespace backend.Controllers
 
             if (existingUser != null)
             {
-                return BadRequest("User with this username or email already exists");
+                return BadRequest(new { statusText = "User with this username or email already exists" });
             }
 
 
             if (!Enum.TryParse(user.Role, out Models.Role role))
             {
-                return BadRequest("Invalid role");
+                return BadRequest(new { statusText = "Invalid role" });
             }
 
             var u = new User()
@@ -102,12 +102,12 @@ namespace backend.Controllers
 
             if (existingUser == null)
             {
-                return BadRequest("Invalid credentials");
+                return BadRequest(new { statusText = "Invalid credentials" });
             }
 
             if (!BCrypt.Net.BCrypt.EnhancedVerify(user.Password, existingUser.Password))
             {
-                return BadRequest("Invalid credentials");
+                return BadRequest(new { statusText = "Invalid credentials" });
             }
 
             var TokenService = new TokenService(_config);

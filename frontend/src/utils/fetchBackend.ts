@@ -14,11 +14,13 @@ export default async function fetchBackend(path: string, method: string, token?:
         });
 
         if (response.ok) {
-            return response.json();
+            const r = await response.text();
+            return r ? JSON.parse(r) : {};
         } else if (response.status === 401) {
             console.error(response.status)
             redirect("/login");
-        } else {
-            throw new Error(`Error fetching data: ${response.status}`);
+        } else if(!response.ok) {
+            const r = await response.json();
+            throw new Error(`${response.status} ${r.statusText}`);
         }
 }

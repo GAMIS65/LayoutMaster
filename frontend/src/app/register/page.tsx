@@ -4,12 +4,15 @@ import { useState } from "react";
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar/Navbar";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
+import fetchBackend from "@/utils/fetchBackend";
 
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
 function Register() {
-    const [credentials, setCredentials] = useState({username: '', email: '', password: '', role: 'User', groupName: "", groupCode: ''});
+    const [credentials, setCredentials] = useState({username: '', email: '', password: '', role: 'User', groupName: '', groupCode: ''});
     const router = useRouter();
+    const [error, setError] = useState("");
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCredentials({
@@ -27,31 +30,25 @@ function Register() {
     }
 
     const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+        event.preventDefault();
 
-    let path;
-    credentials.role === "Student" ? path = "/api/students/register" : path = "/api/users/register"; 
-    console.log(path);
-    const response = await fetch(`https://${backendURL}${path}`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-    });
-
-    if (response.ok) {
-        router.push("/login");
-  }
-
-  console.log(credentials);
-};
+        const path = credentials.role === "Student" ? "/students/register" : "/users/register"; 
+        try {
+            const data = await fetchBackend(path, 'POST', undefined, credentials);
+        if (data) {
+            router.push("/login");
+        }
+    } catch (error: any) {
+        console.log(error);
+        setError(error.toString());
+    }
+    };
 
     return (
         <div>
             <Navbar />
             <div className={styles.container}>
+                {error && <ErrorMessage text={error} />}
                 <form onSubmit={handleSubmit}>
                 <label>
                     <label>
