@@ -5,6 +5,8 @@ import fetchBackend from "@/utils/fetchBackend";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
+import CloseButton from "@/components/CloseButton/CloseButton";
+import { useRouter } from "next/navigation";
 
 type Student = {
     id: string,
@@ -20,6 +22,16 @@ type Data = {
 function GroupPage({params}: {params: {slug: string}}) {
     const [students, setStudents] = useState<Array<Student>>();
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
+
+    const deleteGroup = async () => {
+        try {
+            await fetchBackend(`/groups/${params.slug}`, 'DELETE', document.cookie.replace("token=", ""));
+            router.push("/groups");
+        } catch (error: any) {
+            console.error(`An error occurred: ${error.message}`);
+        }
+    }
 
     useEffect(() => {
         setLoading(true);
@@ -42,15 +54,21 @@ function GroupPage({params}: {params: {slug: string}}) {
     }, [params.slug]);
 
     return (
-        <div className={styles.mainContainer}>
+        <div>
             <Navbar />
-            {students && students.map((student) => {
-                return (
-                    <Link href={`/stats?id=${student.id}`} key={student.id}> 
-                            <h2 key={student.id}>{student.username}</h2>
-                    </Link>
-                )
-            })}
+            <div className={styles.mainContainer}>
+                <div className={styles.container}>
+                    <h1>Žiaci:</h1>
+                    {students && students.map((student) => {
+                        return (
+                            <Link href={`/stats?id=${student.id}`} key={student.id} className={styles.studentContainer}> 
+                                    <h2 key={student.id}>{student.username}</h2>
+                            </Link>
+                        )
+                    })}
+                    <button className={styles.deleteGroup} onClick={deleteGroup}>Vymazať skupinu</button>
+                </div>
+            </div>
         </div>
     )
 }

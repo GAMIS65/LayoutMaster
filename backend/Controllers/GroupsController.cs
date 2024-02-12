@@ -69,12 +69,12 @@ namespace backend.Controllers
 
             return Ok(groups);
         }
-            
+
 
         [Authorize(Roles = "Teacher")]
         [HttpPost]
         public async Task<ActionResult> CreateGroup(CreateGroupDTO Group)
-        { 
+        {
             Guid id = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             var existingGroup = await _context.Groups.FirstOrDefaultAsync(g => g.TeacherId == id && g.Name == Group.Name);
@@ -94,6 +94,24 @@ namespace backend.Controllers
             };
 
             _context.Groups.Add(group);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [Authorize(Roles = "Teacher")]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteGroup(Guid id)
+        {
+            Guid teacherId = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var existingGroup = await _context.Groups.FirstOrDefaultAsync(g => g.TeacherId == teacherId && g.Id == id);
+
+            if (existingGroup == null)
+            {
+                return BadRequest("This group doesn't exist");
+            }
+
+            _context.Groups.Remove(existingGroup);
             await _context.SaveChangesAsync();
             return Ok();
         }

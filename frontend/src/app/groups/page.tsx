@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import fetchBackend from "@/utils/fetchBackend";
+import CloseButton from "@/components/CloseButton/CloseButton";
 
 const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
@@ -73,7 +74,9 @@ function Groups() {
                     <h1>Vaše skupiny</h1>
                     {groups && groups.map((group) => {
                         return (
-                            <button key={group.id}><Link href={`/groups/${group.id}`} key={group.id}><h2>{group.name}</h2></Link></button>
+                            <div key={group.id}>
+                                <button key={group.id}><Link href={`/groups/${group.id}`} key={group.id}><h2>{group.name}</h2></Link></button>
+                            </div>
                         )
                     })}
                     <div className={styles.add}>
