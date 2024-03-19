@@ -12,7 +12,7 @@
 
 
 .navBar ul {
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
     max-width: 100%;
 }
@@ -32,7 +32,7 @@
 }
 
 .right {
-    justify-content: end;
+    justify-content: flex-end;
     width: 100%;
 }
 
