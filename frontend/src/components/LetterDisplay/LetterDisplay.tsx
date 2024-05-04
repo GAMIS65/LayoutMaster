@@ -4,9 +4,10 @@ import React from 'react'
 interface ScrollContainerProps {
   text: string;
   currentLetter: number;
+  error: boolean
 }
 
-function LetterDisplay({ text, currentLetter }: ScrollContainerProps) {
+function LetterDisplay({ text, currentLetter, error }: ScrollContainerProps) {
   const shiftedLetters = text.slice(0, currentLetter).split('');
   const letters = text.slice(currentLetter).split('');
 
@@ -20,7 +21,7 @@ function LetterDisplay({ text, currentLetter }: ScrollContainerProps) {
             </div>
           ))}
         </div>
-        <div className={styles["scroll-center"]}>
+        <div className={error ? styles.error : styles["scroll-center"]}>
           {letters[0] && <div className={styles["display-letter"]}>{letters[0]}</div>}
         </div>
         <div className={styles["scroll-right"]}>

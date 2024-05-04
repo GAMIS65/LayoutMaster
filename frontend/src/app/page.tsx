@@ -37,6 +37,7 @@ export default function Home() {
   const [charactersTypedCount, setcharactersTypedCount] = useState(0);
   const [showSettings, setSettings] = useState(false);
   const [keyCount, setKeyCount] = useState(0);
+  const [isError, setIsError] = useState(false);
 
   const keyboardData = layout;
   const keyboardLayout = keyboardData.layout;
@@ -122,7 +123,8 @@ export default function Home() {
       setMistakes(newMistake);
       setcharactersTypedCount((mistakeCount) => mistakeCount += 1);
 
-
+      setIsError(true);
+      setTimeout(() => setIsError(false), 500);
     }
   };
 
@@ -183,7 +185,7 @@ export default function Home() {
       {
         isClient && <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />
       }
-      <LetterDisplay text={text} currentLetter={currentLetter} />
+      <LetterDisplay text={text} currentLetter={currentLetter} error={isError}/>
       <input className={styles.input} onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať' />
       <button onClick={() => setSettings(!showSettings)}>Nastavenia</button>
       <button onClick={() => setShowKeyboard(!showKeyboard)}>{showKeyboard ? 'Klávesnica: ZAPNUTÁ' : 'Klávesnica: VYPNUTÁ'} </button>
