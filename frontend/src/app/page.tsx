@@ -19,7 +19,7 @@ const backendURL = process.env.NEXT_PUBLIC_BACKEND;
 
 export default function Home() {
   const [text, setText] = useState('');
-  const {layoutName, setLayoutName, layout, setLayout} = useLayoutStore();
+  const { layoutName, setLayoutName, layout, setLayout } = useLayoutStore();
   const [currentLetter, setCurrentLetter] = useState(0);
   const [inputLength, setInputLength] = useState(0);
   const [showKeyboard, setShowKeyboard] = useState(true);
@@ -36,6 +36,7 @@ export default function Home() {
   const [mistakes, setMistakes] = useState({});
   const [charactersTypedCount, setcharactersTypedCount] = useState(0);
   const [showSettings, setSettings] = useState(false);
+  const [keyCount, setKeyCount] = useState(0);
 
   const keyboardData = layout;
   const keyboardLayout = keyboardData.layout;
@@ -43,6 +44,17 @@ export default function Home() {
   const changeLevel = (newLevel: number, layout: Keyboard) => {
     setLevel(newLevel);
     localStorage.setItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`, newLevel.toString());
+  }
+
+  const changeKeyCount = (count: number) => {
+    if (count <= 0) {
+      setKeyCount(0)
+      return
+    } else if (count > level) {
+      setKeyCount(level + 1)
+      return
+    }
+    setKeyCount(count)
   }
 
   const handleKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,43 +75,43 @@ export default function Home() {
 
         if (progress >= 30) {
           setProgress(0);
-  
+
           if (level !== keyboardData.stages.length - 1) {
             // TODO store the level in db
             const newLevel = level + 1;
             changeLevel(newLevel, keyboardData);
           }
         }
-      if (charactersTypedCount >= 15) {
-      let result = [];
-          for(let key in mistakes) {
-              result.push({
-                  "key": key,
-                  //@ts-ignore
-                  "value": mistakes[key]
-              });
+        if (charactersTypedCount >= 15) {
+          let result = [];
+          for (let key in mistakes) {
+            result.push({
+              "key": key,
+              //@ts-ignore
+              "value": mistakes[key]
+            });
           }
 
-        if (backendURL && document.cookie.length > "token=".length) {
-          fetch(`https://${backendURL}/api/stats`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${document.cookie.replace("token=", "")}`
-            },
-            body: JSON.stringify({
-              layoutName: `${layout.name}_${layout['layout-standard']}_${layout.language}`,
-              mistakeValues: result,
-            }),
-          });
+          if (backendURL && document.cookie.length > "token=".length) {
+            fetch(`https://${backendURL}/api/stats`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${document.cookie.replace("token=", "")}`
+              },
+              body: JSON.stringify({
+                layoutName: `${layout.name}_${layout['layout-standard']}_${layout.language}`,
+                mistakeValues: result,
+              }),
+            });
+          }
+          setMistakes({});
+          setcharactersTypedCount(0);
         }
-        setMistakes({});
-        setcharactersTypedCount(0);
-      }
       }
     } else {
       event.currentTarget.value = inputValue.slice(0, inputValue.length - 1);
-      const newMistake = {...mistakes};
+      const newMistake = { ...mistakes };
       // @ts-ignore
       newMistake[text[currentLetter]] = (newMistake[text[currentLetter]] || 0) + 1;
 
@@ -110,7 +122,7 @@ export default function Home() {
       setMistakes(newMistake);
       setcharactersTypedCount((mistakeCount) => mistakeCount += 1);
 
-      
+
     }
   };
 
@@ -131,44 +143,48 @@ export default function Home() {
       }
     }
     return output;
-}
+  }
 
-useEffect(() => {
-  setIsClient(true);
+  useEffect(() => {
+    setIsClient(true);
     if (layoutName) {
       switch (layoutName) {
-      case 'qwerty_ansi_english':
-        setLayout(Qwerty);
-        setLayoutName("qwerty_ansi_english")
-        break;
-      case 'qwertz_ansi_slovak':
-        setLayout(QwertzSlovak);
-        setLayoutName("qwertz_ansi_slovak")
-        break;
-      case 'dvorak_ansi_english':
-        setLayout(Dvorak);
-        setLayoutName("dvorak_ansi_english")
-        break;
-      default:
-        break;
-    }
-  };
+        case 'qwerty_ansi_english':
+          setLayout(Qwerty);
+          setLayoutName("qwerty_ansi_english")
+          break;
+        case 'qwertz_ansi_slovak':
+          setLayout(QwertzSlovak);
+          setLayoutName("qwertz_ansi_slovak")
+          break;
+        case 'dvorak_ansi_english':
+          setLayout(Dvorak);
+          setLayoutName("dvorak_ansi_english")
+          break;
+        default:
+          break;
+      }
+    };
 
-  setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
+    setLevel(Number(localStorage.getItem(`level_${layout.name}_${layout['layout-standard']}_${layout.language}`)));
 
-  if (inputLength === text.length - 5 || text.length === 0) {
-      setText((text) => text + generateLetters(3, keyboardData.stages.slice(0, level + 1), keyboardData.stages[level]));
+    if (inputLength === text.length - 5 || text.length === 0) {
+      setText((text) => text + generateLetters(
+        3,
+        keyboardData.stages.slice((level + 1) - (keyCount || (level + 1)), level + 1),
+        keyboardData.stages[level])
+      );
     }
-  }, [text, currentLetter, inputLength, level, keyboardData.stages, layout, layoutName, setLayoutName, setLayout]);
+  }, [text, currentLetter, inputLength, level, keyboardData.stages, layout, layoutName, setLayoutName, setLayout, keyCount]);
 
   return (
     <div className={styles.wrapper}>
       <Navbar />
       {
-       isClient && <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />
+        isClient && <LetterProgress currentLetter={keyboardData.stages[level]} progress={progress} />
       }
       <LetterDisplay text={text} currentLetter={currentLetter} />
-      <input className={styles.input} onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať'/>
+      <input className={styles.input} onChange={handleKeyDown} placeholder='Kliknite sem aby ste začali písať' />
       <button onClick={() => setSettings(!showSettings)}>Nastavenia</button>
       <button onClick={() => setShowKeyboard(!showKeyboard)}>{showKeyboard ? 'Klávesnica: ZAPNUTÁ' : 'Klávesnica: VYPNUTÁ'} </button>
       <div className={styles["finger-colors-container"]}>
@@ -177,9 +193,9 @@ useEffect(() => {
       <div className={styles["keyboard-container"]}>
         {showKeyboard && <Keyboard keyboardLayout={keyboardLayout} text={text} currentLetter={currentLetter} />}
       </div>
-        {
-          showSettings && <Settings closeSettings={() => setSettings(false)} letters={keyboardData.stages} currentLetter={keyboardData.stages[level]} changeLevel={changeLevel} keyboard={keyboardData}/>
-        }
-      </div>
+      {
+        showSettings && <Settings closeSettings={() => setSettings(false)} letters={keyboardData.stages} currentLetter={keyboardData.stages[level]} changeLevel={changeLevel} keyboard={keyboardData} changeKeyCount={changeKeyCount} keyCount={keyCount} />
+      }
+    </div>
   );
 }

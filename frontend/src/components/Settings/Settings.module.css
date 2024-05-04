@@ -25,16 +25,11 @@
 .setting > * {
   display: inline-block;
   margin: 0;
+  margin-bottom: 0.5rem;
 }
 
 .settingName {
     margin-right: 6px;
-}
-
-.settingsContainer {
-    flex-direction: column;
-    height: 100%;
-    display: flex;
 }
 
 .close {
