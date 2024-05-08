@@ -17,6 +17,7 @@ type KeyboardProps = {
   keyboardLayout: KeyboardLayout;
   text: string;
   currentLetter: number;
+  activeAll?: boolean
 };
 
 const findShiftForKey = (letterToFind: string, layout: any): string | undefined => {
@@ -43,7 +44,7 @@ const findKeyWithoutShift = (letterToFind: string, layout: any): boolean => {
   return false;
 };
 
-function Keyboard({keyboardLayout, text, currentLetter}: KeyboardProps) {
+function Keyboard({keyboardLayout, text, currentLetter, activeAll}: KeyboardProps) {
   const [leftShift, setLeftShift] = useState(false);
   const [rightShift, setRightShift] = useState(false);
 
@@ -81,7 +82,7 @@ function Keyboard({keyboardLayout, text, currentLetter}: KeyboardProps) {
             text[currentLetter] === keyProps.letter[1] ||
             (keyProps.letter[2] && text[currentLetter] === keyProps.letter[2]) ||
             (keyProps.letter[1] === "ShiftLeft" && leftShift) ||
-            (keyProps.letter[1] === "ShiftRight" && rightShift)
+            (keyProps.letter[1] === "ShiftRight" && rightShift) || (activeAll !== undefined)
           }
         />
       ))}

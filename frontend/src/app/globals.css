@@ -40,3 +40,7 @@ input {
     border: 2px solid var(--border);
     border-radius: 5px;
 }
+
+p {
+  color: var(--text);
+}

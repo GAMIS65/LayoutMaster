@@ -1,0 +1,44 @@
+.input {
+    max-width: 30px;
+}
+
+.parent {
+    color: var(--text);
+    display: flex;
+    justify-content: space-evenly;
+    height: 100vh;
+    overflow: auto; 
+}
+
+.right {
+    position: sticky;
+    top: 0;
+    align-content: center;
+}
+
+
+.select {
+    background-color: var(--border);
+    color: var(--text);
+}
+
+
+.link:link {
+  text-decoration: none;
+}
+
+.link:visited {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:active {
+  text-decoration: underline;
+}
+
+.link {
+    color: var(--text);
+}

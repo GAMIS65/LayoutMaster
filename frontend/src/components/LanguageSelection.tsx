@@ -3,7 +3,8 @@ import Qwerty from '@/keyboards/qwerty-english-ansi.json'
 import Dvorak from '@/keyboards/dvorak-english-ansi.json'
 import QwertzSlovak from '@/keyboards/qwertz-slovak-ansi.json'
 import { useLayoutStore } from "@/store/useLayoutName";
-
+import styles from "@/components/LanguageSelection.module.css"
+import Link from 'next/link'
 
 function LanguageSelection() {
   const [custom, setCustom] = useState(false);
@@ -100,12 +101,18 @@ function handleFileChange(event: any) {
   return (
     <div>
       <select onChange={handleLayoutChange}>
+        <option value="" selected disabled hidden>Vyberte si rozloženie</option>
         <option value="Qwerty ANSI">Qwerty ANSI</option>
         <option value="Qwertz SK ANSI">Qwertz SK ANSI</option>
         <option value="Dvorak ANSI">Dvorak ANSI</option>
-        <option value="Vlastný">Vlastný</option>
+        <option value="Vlastný">Vlastné</option>
       </select>
-      {custom && <input type="file" onChange={handleFileChange} />}
+      {custom && (
+        <>
+          <input type="file"  onChange={handleFileChange} />
+          <button><Link className={styles.link} href={"/editor"}>Editor rozloženia</Link></button>
+        </>
+      )}
     </div>
   );
 }
