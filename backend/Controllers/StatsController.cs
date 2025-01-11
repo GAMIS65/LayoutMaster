@@ -14,6 +14,7 @@ using System.Security.Claims;
 
 namespace backend.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StatsController : ControllerBase
@@ -25,7 +26,6 @@ namespace backend.Controllers
             _context = context;
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] PostStatsDTO stat)
         {
@@ -71,7 +71,6 @@ namespace backend.Controllers
             return Ok();
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<GetStatsDTO>> GetStats(string layoutName)
         {
@@ -109,17 +108,14 @@ namespace backend.Controllers
             return Ok(s);
         }
 
-        [Authorize]
         [HttpGet("{userId}")]
         public async Task<ActionResult<GetStatsDTO>> GetUserStats(string layoutName, Guid userId)
         {
             Guid id = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            var x = await _context.Students.FirstOrDefaultAsync(u => u.TeacherId == id);
-
-            if (x == null)
+            if (userId != id)
             {
-                return Unauthorized();
+                Unauthorized();
             }
 
             var stats = await _context.Stats

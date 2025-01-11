@@ -8,10 +8,15 @@ namespace backend.Models
         [Required]
         public Guid Id { get; set; }
         [Required]
+        [MaxLength(32)]
+        [MinLength(3)]
         public required string Username { get; set; }
         [Required]
+        [MaxLength(255)]
         public required string Email { get; set; }
         [Required]
+        [MaxLength(64)]
+        [MinLength(8)]
         public required string Password { get; set; }
         [Required]
         public required Role Role { get; set; }
