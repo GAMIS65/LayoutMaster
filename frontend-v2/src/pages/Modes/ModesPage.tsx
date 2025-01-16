@@ -1,47 +1,51 @@
-import styles from './Modes.module.css';
-import ModeCard from '../../components/ModeCard/ModeCard';
+import styles from './ModesPage.module.css';
+import Card from '../../components/Card/Card';
 
-const Modes = () => {
+function ModesPage() {
   const modes = [
     {
       title: 'Key by Key',
-      difficulty: 'beginner',
+      label: 'beginner',
+      labelColor: 'green',
       description:
         'Master the basics with guided key-by-key practice. Perfect for learning proper finger placement and building muscle memory.',
-      comingSoon: false,
-      link: '/key-by-key',
+      link: '/keybykey',
     },
     {
       title: 'N-gram',
-      difficulty: 'intermediate',
+      label: 'intermediate',
+      labelColor: 'orange',
       description:
         'Improve your fluency and speed by practicing sequences of letters, digraphs, or trigraphs that appear frequently in real-world typing.',
       comingSoon: true,
-      link: '/ngram',
+      link: '#',
     },
     {
       title: 'Bursts',
-      difficulty: 'intermediate',
+      label: 'intermediate',
+      labelColor: 'orange',
       description:
-        'Practice common letter combinations and short words in rapid succession.',
+        'Practice common short words in rapid succession.',
       comingSoon: true,
-      link: '/bursts',
+      link: '#',
     },
     {
       title: 'Quotes',
-      difficulty: 'advanced',
+      label: 'Advanced',
+      labelColor: 'red',
       description:
         'Type famous quotes and passages from literature. Improve your rhythm and flow with meaningful text.',
       comingSoon: true,
-      link: '/quotes',
+      link: '#',
     },
     {
       title: 'Code',
-      difficulty: 'expert',
+      label: 'Expert',
+      labelColor: 'purple',
       description:
         'Practice typing code snippets in various programming languages.',
       comingSoon: true,
-      link: '/code',
+      link: '#',
     },
   ];
 
@@ -53,11 +57,12 @@ const Modes = () => {
 
       <div className={styles.modesGrid}>
         {modes.map((mode, index) => (
-          <ModeCard
+          <Card
             key={index}
             title={mode.title}
             description={mode.description}
-            difficulty={mode.difficulty}
+            label={mode.label}
+            labelColor={mode.labelColor}
             comingSoon={mode.comingSoon}
             link={mode.link}
           />
@@ -67,4 +72,4 @@ const Modes = () => {
   );
 };
 
-export default Modes;
+export default ModesPage;

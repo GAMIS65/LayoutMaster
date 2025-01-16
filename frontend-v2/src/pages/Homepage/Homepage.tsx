@@ -10,7 +10,7 @@ function App() {
           A modern, fast, and efficient approach to improve your typing speed
           and accuracy. Built for everyone.
         </p>
-        <Link to="/modes" className={styles.ctaButton} viewTransition>
+        <Link to="/layouts" className={styles.ctaButton} viewTransition>
           Start Typing
         </Link>
       </section>
