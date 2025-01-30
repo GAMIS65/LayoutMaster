@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-    --background: #030711;
+    --background: radial-gradient(circle at center, #0f172a, #0b0f1a);
     --text: #e2e8f0;
     --text-secondary: #94a3b8;
     --accent: #3b82f6;
-    --gradient-start: #3b82f6;
+    --gradient-start: #6366f1;
     --gradient-end: #8b5cf6;
 
     --pinky-left: oklch(70% 0.15 330);
@@ -30,10 +30,9 @@
 
 body {
     min-height: 100vh;
-    background-color: var(--background);
+    background: var(--background);
     color: var(--text);
     line-height: 1.6;
-    padding: 2rem;
 }
 
 h1 {
