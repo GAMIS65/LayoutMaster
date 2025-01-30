@@ -1,0 +1,244 @@
+{
+  "qwerty": {
+    "name": "qwerty",
+    "standard": "ansi",
+    "layoutMasterVersion": 1,
+    "rows": [
+      {
+        "keys": [
+          {
+            "letter": ["`", "`", "~"],
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["1", "1", "!"],
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          { "letter": ["2", "2", "@"], "finger": "ringLeft", "shift": "right" },
+          {
+            "letter": ["3", "3", "#"],
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["4", "4", "$"],
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["5", "5", "%"],
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["6", "6", "^"],
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["7", "7", "&"],
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["8", "8", "*"],
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          { "letter": ["9", "9", "("], "finger": "ringRight", "shift": "left" },
+          {
+            "letter": ["0", "0", ")"],
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["-", "-", "_"],
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          { "letter": ["=", "=", "+"], "finger": "pinkyRight", "shift": "left" }
+        ]
+      },
+      {
+        "keys": [
+          {
+            "letter": ["q", "q", "Q"],
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          { "letter": ["w", "w", "W"], "finger": "ringLeft", "shift": "right" },
+          {
+            "letter": ["e", "e", "E"],
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+
+          {
+            "letter": ["r", "r", "R"],
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["t", "t", "T"],
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["y", "y", "Y"],
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["u", "u", "U"],
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["i", "i", "I"],
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          { "letter": ["o", "o", "O"], "finger": "ringRight", "shift": "left" },
+          {
+            "letter": ["p", "p", "P"],
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["[", "[", "{"],
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["]", "]", "}"],
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["\\", "\\", "|"],
+            "finger": "pinkyRight",
+            "shift": "left"
+          }
+        ]
+      },
+      {
+        "keys": [
+          {
+            "letter": ["a", "a", "A"],
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          { "letter": ["s", "s", "S"], "finger": "ringLeft", "shift": "right" },
+          {
+            "letter": ["d", "d", "D"],
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["f", "f", "F"],
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["g", "g", "G"],
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["h", "h", "H"],
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["j", "j", "J"],
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["k", "k", "K"],
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          { "letter": ["l", "l", "L"], "finger": "ringRight", "shift": "left" },
+          {
+            "letter": [";", ";", ":"],
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["'", "'", "\""],
+            "finger": "pinkyRight",
+            "shift": "left"
+          }
+        ]
+      },
+      {
+        "keys": [
+          {
+            "letter": ["Shift", "ShiftLeft", "ShiftLeft"],
+            "finger": "pinkyLeft",
+            "shift": ""
+          },
+          {
+            "letter": ["z", "z", "Z"],
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          { "letter": ["x", "x", "X"], "finger": "ringLeft", "shift": "right" },
+          {
+            "letter": ["c", "c", "C"],
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["v", "v", "V"],
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["b", "b", "B"],
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": ["n", "n", "N"],
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["m", "m", "M"],
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": [",", ",", "<"],
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          { "letter": [".", ".", ">"], "finger": "ringRight", "shift": "left" },
+          {
+            "letter": ["/", "/", "?"],
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": ["Shift", "ShiftRight", "ShiftRight"],
+            "finger": "pinkyRight",
+            "shift": ""
+          }
+        ]
+      },
+      {
+        "keys": [
+          {
+            "letter": ["SPACE", "SPACE", " "],
+            "finger": "thumbLeft",
+            "shift": ""
+          }
+        ]
+      }
+    ]
+  }
+}

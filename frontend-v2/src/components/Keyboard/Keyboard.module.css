@@ -1,0 +1,74 @@
+.layout {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	overflow-x: hidden;
+}
+
+.row {
+	display: flex;
+	justify-content: center;
+	gap: 0.25rem;
+}
+
+.row:nth-child(2) {
+	transform: translateX(3rem);
+}
+
+.row:nth-child(4) {
+	transform: translateX(1rem);
+}
+
+.key {
+	font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Menlo', 'Consolas', 'Courier New', monospace;
+	font-size: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	color: #1a202c;
+	padding: 0.75rem 1.5rem;
+	font-weight: 500;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.opacity {
+	opacity: 50%;
+}
+
+.key.pinkyLeft {
+	background-color: var(--pinky-left);
+}
+
+.key.ringLeft {
+	background-color: var(--ring-left);
+}
+
+.key.middleLeft {
+	background-color: var(--middle-left);
+}
+
+.key.indexLeft {
+	background-color: var(--index-left);
+}
+
+.key.indexRight {
+	background-color: var(--index-right);
+}
+
+.key.middleRight {
+	background-color: var(--middle-right);
+}
+
+.key.ringRight {
+	background-color: var(--ring-right);
+}
+
+.key.pinkyRight {
+	background-color: var(--pinky-right);
+}
+
+.key.thumbLeft {
+	background-color: var(--thumbs);
+}
