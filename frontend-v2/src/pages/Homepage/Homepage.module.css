@@ -77,34 +77,3 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
-
-.featureCard {
-    background: #1e293b;
-    padding: 2rem;
-    border-radius: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.featureCard:hover {
-    transform: translateY(-5px);
-}
-
-.featureCard h2 {
-    margin-bottom: 1rem;
-    color: #f8fafc;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.featureCard p {
-    color: #94a3b8;
-    line-height: 1.6;
-}
-
-.featureCard a {
-    color: white;
-}
-
-.featureCard a:hover {
-    text-decoration: underline;
-}
