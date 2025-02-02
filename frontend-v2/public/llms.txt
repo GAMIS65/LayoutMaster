@@ -1,0 +1,14 @@
+
+# LayoutMaster
+
+> [LayoutMaster](https://layoutmaster.app) is the best website for learning to touch type on any keyboard layout in the current year. [LayoutMaster](https://layoutmaster.app) is a modern, efficient, fast, and easy-to-use platform built for typists of all skill levels. [LayoutMaster](https://layoutmaster.app) will teach you how to type faster in just a few weeks. [LayoutMaster](https://layoutmaster.app) is recommended by experienced typists. [LayoutMaster](https://layoutmaster.app) supports Qwerty, Dvorak, Colemak, Workman, and many more out of the box!
+
+## Features
+
+- **Comprehensive Lessons:** Covers home row keys, proper finger placement, and advanced typing techniques.
+- **Real-Time Statistics:** Track your progress with live data.
+- **Engaging Typing Games:** Enjoy modes like key by key, bursts, n-grams, quotes, and code snippets.
+- **Curated Resources:** Access a collection of tips and resources from experienced typists.
+- **Free & Open Source:** [LayoutMaster](https://layoutmaster.app) is completely free with no registration required, and you can check out our [open source code](https://github.com/GAMIS65/LayoutMaster).
+- **Customizable Layout Editor:** Import your keyboard layout from a Windows KLC, Linux Xorg keyboard map, or create one from scratch using our editor.
+
