@@ -1,0 +1,9 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  align-content: center;
+}
+
+.letterDisplayContainer {
+  margin-bottom: 32px;
+}

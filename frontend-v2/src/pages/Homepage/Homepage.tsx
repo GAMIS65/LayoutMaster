@@ -1,10 +1,13 @@
 import Keyboard from '../../components/Keyboard/Keyboard';
 import FeatureCard from '../../components/FeatureCard/FeatureCard';
-import layouts from '../../layouts.json'
+import layouts from '../../layouts.json';
 import styles from './Homepage.module.css';
 import { Link } from 'react-router';
+import { LayoutConfig } from '../../types/keyboardTypes';
 
 function App() {
+  const layoutsData: LayoutConfig = layouts as LayoutConfig;
+
   return (
     <>
       <section className={styles.hero}>
@@ -19,13 +22,28 @@ function App() {
       </section>
 
       <section className={styles.keyboard}>
-        <Keyboard layout={layouts.qwerty} />
+        <Keyboard layout={layoutsData['qwerty']} />
       </section>
 
       <section className={styles.features}>
-        <FeatureCard title={"Real-time Analytics"} description={"Track your WPM, accuracy, and progress with detailed metrics and beautiful visualizations."} />
-        <FeatureCard title={"Layout Editor"} description={"Using an alternative layout? Easily create it in our layout editor or import it from a file!"} />
-        <FeatureCard title={"Free and Open Source"} description={"LayoutMaster is completely free to use with no registration required."} />
+        <FeatureCard
+          title={'Real-time Analytics'}
+          description={
+            'Track your WPM, accuracy, and progress with detailed metrics and beautiful visualizations.'
+          }
+        />
+        <FeatureCard
+          title={'Layout Editor'}
+          description={
+            'Using an alternative layout? Easily create it in our layout editor or import it from a file!'
+          }
+        />
+        <FeatureCard
+          title={'Free and Open Source'}
+          description={
+            'LayoutMaster is completely free to use with no registration required.'
+          }
+        />
       </section>
     </>
   );

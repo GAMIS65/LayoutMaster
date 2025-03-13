@@ -24,8 +24,7 @@ function ModesPage() {
       title: 'Bursts',
       label: 'intermediate',
       labelColor: 'orange',
-      description:
-        'Practice common short words in rapid succession.',
+      description: 'Practice common short words in rapid succession.',
       comingSoon: true,
       link: '#',
     },
@@ -70,6 +69,6 @@ function ModesPage() {
       </div>
     </div>
   );
-};
+}
 
 export default ModesPage;
