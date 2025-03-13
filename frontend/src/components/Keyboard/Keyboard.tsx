@@ -1,94 +1,72 @@
-import styles from "../../app/page.module.css";
-import { useEffect, useState } from "react";
+import { RowKey, Layout } from '../../types/keyboardTypes';
+import styles from './Keyboard.module.css';
 
 type KeyProps = {
-  name: string;
-  isActive: boolean | string;
-  style: string;
+  keyData: RowKey;
+  letter?: string;
+  isActive?: boolean;
 };
-
-function Key({ name, isActive, style }: KeyProps) {
-  return (
-    <div className={`${styles.key} ${styles[style]} ${isActive ? styles.active : styles.opacity}`}>{name}</div>
-  );
-}
 
 type KeyboardProps = {
-  keyboardLayout: KeyboardLayout;
-  text: string;
-  currentLetter: number;
-  activeAll?: boolean
+  layout: Layout;
+  letter?: string;
 };
 
-const findShiftForKey = (letterToFind: string, layout: any): string | undefined => {
-  for (const row in layout) {
-    for (const key in layout[row]) {
-      const letterVariants = layout[row][key].letter;
-      if (letterVariants.includes(letterToFind)) {
-        return layout[row][key].shift;
+const findShiftForKey = (
+  letterToFind: string,
+  layout: Layout,
+): string | undefined => {
+  for (const row of layout.keyboardRows) {
+    for (const key of row.rowKeys) {
+      const letterVariants = key.letter;
+      if (letterVariants.withShift === letterToFind) {
+        return key.shift;
       }
     }
   }
   return undefined;
 };
 
-const findKeyWithoutShift = (letterToFind: string, layout: any): boolean => {
-  for (const row in layout) {
-    for (const key in layout[row]) {
-      const letterVariants = layout[row][key].letter;
-      if (letterVariants[1] === letterToFind) {
-        return true;
-      }
-    }
-  }
-  return false;
-};
-
-function Keyboard({keyboardLayout, text, currentLetter, activeAll}: KeyboardProps) {
-  const [leftShift, setLeftShift] = useState(false);
-  const [rightShift, setRightShift] = useState(false);
-
-  useEffect(() => {
-    const currentShift = findShiftForKey(text[currentLetter], keyboardLayout);
-    if (
-      text &&
-      text[currentLetter] &&
-      !findKeyWithoutShift(text[currentLetter], keyboardLayout)
-    ) {
-      if (currentShift === "left") {
-        setLeftShift(true);
-        setRightShift(false);
-      } else if (currentShift === "right") {
-        setRightShift(true);
-        setLeftShift(false);
-      } else {
-        setRightShift(false);
-        setLeftShift(false);
-      }
-    } else {
-      setRightShift(false);
-      setLeftShift(false);
-    }
-  }, [text, currentLetter, keyboardLayout]);
-
-  const keyboard = Object.entries(keyboardLayout).map(([rowKey, row], index) => (
-    <div key={rowKey} className={`${styles.row} ${styles[`row${index + 1}`]}`}>
-      {Object.entries(row).map(([key, keyProps]) => (
-        <Key
-          key={key}
-          name={keyProps.letter[0] || ""}
-          style={keyProps.finger}
-          isActive={
-            text[currentLetter] === keyProps.letter[1] ||
-            (keyProps.letter[2] && text[currentLetter] === keyProps.letter[2]) ||
-            (keyProps.letter[1] === "ShiftLeft" && leftShift) ||
-            (keyProps.letter[1] === "ShiftRight" && rightShift) || (activeAll !== undefined)
-          }
-        />
-      ))}
+function KeyElement({ keyData, isActive = true }: KeyProps) {
+  return (
+    <div
+      className={`${styles.key} ${!isActive && styles.opacity} ${styles[keyData.finger]}`}
+    >
+      {keyData.letter.display}
     </div>
-  ));
-  return <div>{keyboard}</div>;
+  );
+}
+
+function Keyboard({ layout, letter }: KeyboardProps) {
+  const shift = letter ? (findShiftForKey(letter, layout) ?? '') : '';
+
+  const isActiveKey = (keyData: RowKey): boolean => {
+    return (
+      keyData.letter.withoutShift === letter ||
+      keyData.letter.withShift === letter ||
+      (keyData.letter.withShift === 'ShiftLeft' && shift === 'left') ||
+      (keyData.letter.withShift === 'ShiftRight' && shift === 'right')
+    );
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.layout}>
+        {layout.keyboardRows.map((row, rowIndex) => (
+          <div key={rowIndex} className={styles.row}>
+            {row.rowKeys.map((keyData, keyIndex) => (
+              <KeyElement
+                key={keyIndex}
+                letter={letter}
+                keyData={keyData}
+                isActive={letter ? isActiveKey(keyData) : undefined}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default Keyboard;

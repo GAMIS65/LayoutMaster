@@ -1,32 +1,37 @@
-import styles from './LetterDisplay.module.css'
-import React from 'react'
+import styles from './LetterDisplay.module.css';
 
-interface ScrollContainerProps {
+type LetterDisplayProps = {
   text: string;
-  currentLetter: number;
-  error: boolean
-}
+  input: string;
+};
 
-function LetterDisplay({ text, currentLetter, error }: ScrollContainerProps) {
-  const shiftedLetters = text.slice(0, currentLetter).split('');
-  const letters = text.slice(currentLetter).split('');
+function LetterDisplay({ text, input }: LetterDisplayProps) {
+  const currentPosition = input.length;
+
+  const shiftedLetters = text.slice(0, currentPosition).split('');
+  const letters = text.slice(currentPosition).split('');
 
   return (
-    <div className={styles["scroll-container"]}>
-      <div className={styles["scroll"]}>
-        <div className={styles["scroll-left"]}>
+    <div className={styles.scrollContainer}>
+      <div className={styles.scroll}>
+        <div className={styles.scrollLeft}>
           {shiftedLetters.map((letter, index) => (
-            <div key={index} className={styles["display-letter"]}>
+            <div
+              key={index}
+              className={`${styles.displayLetter} ${input[index] !== letter ? styles.mistake : ''}`}
+            >
               {letter}
             </div>
           ))}
         </div>
-        <div className={error ? styles.error : styles["scroll-center"]}>
-          {letters[0] && <div className={styles["display-letter"]}>{letters[0]}</div>}
+        <div className={styles.scrollCenter}>
+          {letters[0] && (
+            <div className={styles.displayLetter}>{letters[0]}</div>
+          )}
         </div>
-        <div className={styles["scroll-right"]}>
+        <div className={styles.scrollRight}>
           {letters.slice(1).map((letter, index) => (
-            <div key={index} className={styles["display-letter"]}>
+            <div key={index} className={styles.displayLetter}>
               {letter}
             </div>
           ))}
@@ -34,6 +39,6 @@ function LetterDisplay({ text, currentLetter, error }: ScrollContainerProps) {
       </div>
     </div>
   );
-};
+}
 
-export default LetterDisplay
+export default LetterDisplay;
