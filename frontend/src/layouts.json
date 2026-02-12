@@ -1,0 +1,810 @@
+{
+  "qwerty": {
+    "name": "QWERTY",
+    "standard": "ansi",
+    "layoutMasterLayoutVersion": 1,
+    "rows": [
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "ESC",
+              "withoutShift": "`",
+              "withShift": "~"
+            },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "1", "withoutShift": "1", "withShift": "!" },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "2", "withoutShift": "2", "withShift": "@" },
+            "finger": "ringLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "3", "withoutShift": "3", "withShift": "#" },
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "4", "withoutShift": "4", "withShift": "$" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "5", "withoutShift": "5", "withShift": "%" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "6", "withoutShift": "6", "withShift": "^" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "7", "withoutShift": "7", "withShift": "&" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "8", "withoutShift": "8", "withShift": "*" },
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "9", "withoutShift": "9", "withShift": "(" },
+            "finger": "ringRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "0", "withoutShift": "0", "withShift": ")" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "-", "withoutShift": "-", "withShift": "_" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "=", "withoutShift": "=", "withShift": "+" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "Bksp",
+              "withoutShift": "Bksp",
+              "withShift": "Bksp"
+            },
+            "finger": "pinkyRight",
+            "shift": "left"
+          }
+        ]
+      },
+
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "Tab",
+              "withoutShift": "Tab",
+              "withShift": "Tab"
+            },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "q", "withoutShift": "q", "withShift": "Q" },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "w", "withoutShift": "w", "withShift": "W" },
+            "finger": "ringLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "e", "withoutShift": "e", "withShift": "E" },
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "r", "withoutShift": "r", "withShift": "R" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "t", "withoutShift": "t", "withShift": "T" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "y", "withoutShift": "y", "withShift": "Y" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "u", "withoutShift": "u", "withShift": "U" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "i", "withoutShift": "i", "withShift": "I" },
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "o", "withoutShift": "o", "withShift": "O" },
+            "finger": "ringRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "p", "withoutShift": "p", "withShift": "P" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "[", "withoutShift": "[", "withShift": "{" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "]", "withoutShift": "]", "withShift": "}" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "\\",
+              "withoutShift": "\\",
+              "withShift": "|"
+            },
+            "finger": "pinkyRight",
+            "shift": "left"
+          }
+        ]
+      },
+
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "Caps",
+              "withoutShift": "Caps",
+              "withShift": "Caps"
+            },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "a", "withoutShift": "a", "withShift": "A" },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "s", "withoutShift": "s", "withShift": "S" },
+            "finger": "ringLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "d", "withoutShift": "d", "withShift": "D" },
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "f", "withoutShift": "f", "withShift": "F" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "g", "withoutShift": "g", "withShift": "G" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "h", "withoutShift": "h", "withShift": "H" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "j", "withoutShift": "j", "withShift": "J" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "k", "withoutShift": "k", "withShift": "K" },
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "l", "withoutShift": "l", "withShift": "L" },
+            "finger": "ringRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": ";", "withoutShift": ";", "withShift": ":" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "'",
+              "withoutShift": "'",
+              "withShift": "\""
+            },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "Enter",
+              "withoutShift": "Enter",
+              "withShift": "Enter"
+            },
+            "finger": "pinkyRight",
+            "shift": "left"
+          }
+        ]
+      },
+
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "LShift",
+              "withoutShift": "ShiftLeft",
+              "withShift": "ShiftLeft"
+            },
+            "finger": "pinkyLeft",
+            "shift": ""
+          },
+          {
+            "letter": { "display": "z", "withoutShift": "z", "withShift": "Z" },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "x", "withoutShift": "x", "withShift": "X" },
+            "finger": "ringLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "c", "withoutShift": "c", "withShift": "C" },
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "v", "withoutShift": "v", "withShift": "V" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "b", "withoutShift": "b", "withShift": "B" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "n", "withoutShift": "n", "withShift": "N" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "m", "withoutShift": "m", "withShift": "M" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": ",", "withoutShift": ",", "withShift": "<" },
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": ".", "withoutShift": ".", "withShift": ">" },
+            "finger": "ringRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "/", "withoutShift": "/", "withShift": "?" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "RShift",
+              "withoutShift": "ShiftRight",
+              "withShift": "ShiftRight"
+            },
+            "finger": "pinkyRight",
+            "shift": ""
+          }
+        ]
+      },
+
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "Ctrl",
+              "withoutShift": "Ctrl",
+              "withShift": "Ctrl"
+            },
+            "finger": "pinkyLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Win",
+              "withoutShift": "Win",
+              "withShift": "Win"
+            },
+            "finger": "pinkyLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Alt",
+              "withoutShift": "Alt",
+              "withShift": "Alt"
+            },
+            "finger": "thumbLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "SPACE",
+              "withoutShift": "SPACE",
+              "withShift": " "
+            },
+            "finger": "thumbLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Alt",
+              "withoutShift": "Alt",
+              "withShift": "Alt"
+            },
+            "finger": "thumbLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Fn",
+              "withoutShift": "Fn",
+              "withShift": "Fn"
+            },
+            "finger": "pinkyRight",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Menu",
+              "withoutShift": "Menu",
+              "withShift": "Menu"
+            },
+            "finger": "pinkyRight",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Ctrl",
+              "withoutShift": "Ctrl",
+              "withShift": "Ctrl"
+            },
+            "finger": "pinkyRight",
+            "shift": ""
+          }
+        ]
+      }
+    ]
+  },
+  "dvorak": {
+    "name": "DVORAK",
+    "standard": "ansi",
+    "layoutMasterLayoutVersion": 1,
+    "rows": [
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "ESC",
+              "withoutShift": "`",
+              "withShift": "~"
+            },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "1", "withoutShift": "1", "withShift": "!" },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "2", "withoutShift": "2", "withShift": "@" },
+            "finger": "ringLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "3", "withoutShift": "3", "withShift": "#" },
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "4", "withoutShift": "4", "withShift": "$" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "5", "withoutShift": "5", "withShift": "%" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "6", "withoutShift": "6", "withShift": "^" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "7", "withoutShift": "7", "withShift": "&" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "8", "withoutShift": "8", "withShift": "*" },
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "9", "withoutShift": "9", "withShift": "(" },
+            "finger": "ringRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "0", "withoutShift": "0", "withShift": ")" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "-", "withoutShift": "-", "withShift": "_" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "=", "withoutShift": "=", "withShift": "+" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "Bksp",
+              "withoutShift": "Bksp",
+              "withShift": "Bksp"
+            },
+            "finger": "pinkyRight",
+            "shift": "left"
+          }
+        ]
+      },
+
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "Tab",
+              "withoutShift": "Tab",
+              "withShift": "Tab"
+            },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "q", "withoutShift": "q", "withShift": "Q" },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "w", "withoutShift": "w", "withShift": "W" },
+            "finger": "ringLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "e", "withoutShift": "e", "withShift": "E" },
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "r", "withoutShift": "r", "withShift": "R" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "t", "withoutShift": "t", "withShift": "T" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "y", "withoutShift": "y", "withShift": "Y" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "u", "withoutShift": "u", "withShift": "U" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "i", "withoutShift": "i", "withShift": "I" },
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "o", "withoutShift": "o", "withShift": "O" },
+            "finger": "ringRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "p", "withoutShift": "p", "withShift": "P" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "[", "withoutShift": "[", "withShift": "{" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "]", "withoutShift": "]", "withShift": "}" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "\\",
+              "withoutShift": "\\",
+              "withShift": "|"
+            },
+            "finger": "pinkyRight",
+            "shift": "left"
+          }
+        ]
+      },
+
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "Caps",
+              "withoutShift": "Caps",
+              "withShift": "Caps"
+            },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "a", "withoutShift": "a", "withShift": "A" },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "s", "withoutShift": "s", "withShift": "S" },
+            "finger": "ringLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "d", "withoutShift": "d", "withShift": "D" },
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "f", "withoutShift": "f", "withShift": "F" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "g", "withoutShift": "g", "withShift": "G" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "h", "withoutShift": "h", "withShift": "H" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "j", "withoutShift": "j", "withShift": "J" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "k", "withoutShift": "k", "withShift": "K" },
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "l", "withoutShift": "l", "withShift": "L" },
+            "finger": "ringRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": ";", "withoutShift": ";", "withShift": ":" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "'",
+              "withoutShift": "'",
+              "withShift": "\""
+            },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "Enter",
+              "withoutShift": "Enter",
+              "withShift": "Enter"
+            },
+            "finger": "pinkyRight",
+            "shift": "left"
+          }
+        ]
+      },
+
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "LShift",
+              "withoutShift": "ShiftLeft",
+              "withShift": "ShiftLeft"
+            },
+            "finger": "pinkyLeft",
+            "shift": ""
+          },
+          {
+            "letter": { "display": "z", "withoutShift": "z", "withShift": "Z" },
+            "finger": "pinkyLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "x", "withoutShift": "x", "withShift": "X" },
+            "finger": "ringLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "c", "withoutShift": "c", "withShift": "C" },
+            "finger": "middleLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "v", "withoutShift": "v", "withShift": "V" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "b", "withoutShift": "b", "withShift": "B" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "n", "withoutShift": "n", "withShift": "N" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "m", "withoutShift": "m", "withShift": "M" },
+            "finger": "indexRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": ",", "withoutShift": ",", "withShift": "<" },
+            "finger": "middleRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": ".", "withoutShift": ".", "withShift": ">" },
+            "finger": "ringRight",
+            "shift": "left"
+          },
+          {
+            "letter": { "display": "/", "withoutShift": "/", "withShift": "?" },
+            "finger": "pinkyRight",
+            "shift": "left"
+          },
+          {
+            "letter": {
+              "display": "RShift",
+              "withoutShift": "ShiftRight",
+              "withShift": "ShiftRight"
+            },
+            "finger": "pinkyRight",
+            "shift": ""
+          }
+        ]
+      },
+
+      {
+        "rows": [
+          {
+            "letter": {
+              "display": "Ctrl",
+              "withoutShift": "Ctrl",
+              "withShift": "Ctrl"
+            },
+            "finger": "pinkyLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Win",
+              "withoutShift": "Win",
+              "withShift": "Win"
+            },
+            "finger": "pinkyLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Alt",
+              "withoutShift": "Alt",
+              "withShift": "Alt"
+            },
+            "finger": "thumbLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "SPACE",
+              "withoutShift": "SPACE",
+              "withShift": " "
+            },
+            "finger": "thumbLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Alt",
+              "withoutShift": "Alt",
+              "withShift": "Alt"
+            },
+            "finger": "thumbLeft",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Fn",
+              "withoutShift": "Fn",
+              "withShift": "Fn"
+            },
+            "finger": "pinkyRight",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Menu",
+              "withoutShift": "Menu",
+              "withShift": "Menu"
+            },
+            "finger": "pinkyRight",
+            "shift": ""
+          },
+          {
+            "letter": {
+              "display": "Ctrl",
+              "withoutShift": "Ctrl",
+              "withShift": "Ctrl"
+            },
+            "finger": "pinkyRight",
+            "shift": ""
+          }
+        ]
+      }
+    ]
+  }
+}

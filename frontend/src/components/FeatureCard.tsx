@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 
-const styles = {
+export const styles = {
   green: 'text-green-600 border-green-200 hover:border-green-300',
   purple: 'border-purple-200 text-purple-600 hover:border-purple-300',
   blue: 'border-blue-200 text-blue-600 hover:border-blue-300',
@@ -18,7 +18,7 @@ type FeatureCardProps = {
   color?: Color;
 };
 
-export default function FeatureCard({
+export function FeatureCard({
   title,
   description,
   icon: Icon,
