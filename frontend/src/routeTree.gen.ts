@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ModesIndexRouteImport } from './routes/modes/index'
 import { Route as LayoutsIndexRouteImport } from './routes/layouts/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModesIndexRoute = ModesIndexRouteImport.update({
+  id: '/modes/',
+  path: '/modes/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LayoutsIndexRoute = LayoutsIndexRouteImport.update({
@@ -25,28 +31,32 @@ const LayoutsIndexRoute = LayoutsIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/layouts': typeof LayoutsIndexRoute
+  '/layouts/': typeof LayoutsIndexRoute
+  '/modes/': typeof ModesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/layouts': typeof LayoutsIndexRoute
+  '/modes': typeof ModesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/layouts/': typeof LayoutsIndexRoute
+  '/modes/': typeof ModesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/layouts'
+  fullPaths: '/' | '/layouts/' | '/modes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/layouts'
-  id: '__root__' | '/' | '/layouts/'
+  to: '/' | '/layouts' | '/modes'
+  id: '__root__' | '/' | '/layouts/' | '/modes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LayoutsIndexRoute: typeof LayoutsIndexRoute
+  ModesIndexRoute: typeof ModesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,10 +68,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modes/': {
+      id: '/modes/'
+      path: '/modes'
+      fullPath: '/modes/'
+      preLoaderRoute: typeof ModesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/layouts/': {
       id: '/layouts/'
       path: '/layouts'
-      fullPath: '/layouts'
+      fullPath: '/layouts/'
       preLoaderRoute: typeof LayoutsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LayoutsIndexRoute: LayoutsIndexRoute,
+  ModesIndexRoute: ModesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

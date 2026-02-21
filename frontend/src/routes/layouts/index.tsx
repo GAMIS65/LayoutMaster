@@ -1,5 +1,5 @@
 import { Keyboard } from '@/components/Keyboard';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import layoutData from '@/layouts.json';
 import type { LayoutConfig } from '@/types/keyboardTypes';
 import { KeyboardIcon } from 'lucide-react';
@@ -20,7 +20,6 @@ type CardProps = {
 const layouts = layoutData as LayoutConfig;
 
 function RouteComponent() {
-  const { layoutName } = useKeyboardLayout();
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="flex justify-center items-center">
@@ -28,9 +27,16 @@ function RouteComponent() {
           <SelectionMenu />
         </div>
 
-        <div className="mx-6">
-          <p>Current layout: {layoutName || 'None'}</p>
+        <div className="mx-6 flex-col">
           <Keyboard />
+          <div className="flex justify-end mt-3">
+            <Link
+              to="/modes"
+              className="px-8 py-3 font-bold bg-green-200 rounded-xl hover:bg-green-300 transition-colors duration-150 hover:cursor-pointer text-green-600"
+            >
+              Continue
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -66,7 +72,7 @@ function Card({ title, onClick, badge, description, isSelected }: CardProps) {
 function SelectionMenu() {
   const { layoutName, setLayoutName } = useKeyboardLayout();
   return (
-    <div className="flex flex-col max-h-[700px]">
+    <div className="flex flex-col max-h-[175]">
       <h1>Select a layout</h1>
       <div className="flex flex-col overflow-y-scroll">
         {Object.keys(layouts).map((layout, index) => (
