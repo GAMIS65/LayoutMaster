@@ -4,6 +4,7 @@ import layoutData from '@/layouts.json';
 import type { LayoutConfig } from '@/types/keyboardTypes';
 import { KeyboardIcon } from 'lucide-react';
 import { useKeyboardLayout } from '@/context/LayoutContext';
+import { Navbar } from '@/components/Navbar';
 
 export const Route = createFileRoute('/layouts/')({
   component: RouteComponent,
@@ -21,21 +22,25 @@ const layouts = layoutData as LayoutConfig;
 
 function RouteComponent() {
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <div className="flex justify-center items-center">
-        <div className="flex flex-col gap-3 justify-center items-center">
-          <SelectionMenu />
-        </div>
+    <div className="min-h-svh flex flex-col">
+      <Navbar />
 
-        <div className="mx-6 flex-col">
-          <Keyboard />
-          <div className="flex justify-end mt-3">
-            <Link
-              to="/modes"
-              className="px-8 py-3 font-bold bg-green-200 rounded-xl hover:bg-green-300 transition-colors duration-150 hover:cursor-pointer text-green-600"
-            >
-              Continue
-            </Link>
+      <div className="flex-1 flex justify-center items-center">
+        <div className="flex justify-center items-center">
+          <div className="flex flex-col gap-3 justify-center items-center">
+            <SelectionMenu />
+          </div>
+
+          <div className="mx-6 flex-col">
+            <Keyboard />
+            <div className="flex justify-end mt-3">
+              <Link
+                to="/modes"
+                className="px-8 py-3 font-bold bg-green-200 rounded-xl hover:bg-green-300 transition-colors duration-150 hover:cursor-pointer text-green-600"
+              >
+                Continue
+              </Link>
+            </div>
           </div>
         </div>
       </div>

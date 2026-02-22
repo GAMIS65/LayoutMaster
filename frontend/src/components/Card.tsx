@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
 import type { LucideIcon } from 'lucide-react';
 
 export const styles = {
@@ -49,25 +49,25 @@ function Root({ children, color = 'black', disabled, className }: RootProps) {
   );
 }
 
-function Header({ children }: { children: React.ReactNode }) {
+function Header({ children }: { children: ReactNode }) {
   return (
     <div className="mb-4 flex justify-between items-center">{children}</div>
   );
 }
 
-function Title({ children }: { children: React.ReactNode }) {
+function Title({ children }: { children: ReactNode }) {
   return <h1 className="font-bold text-lg mb-2 text-gray-900">{children}</h1>;
 }
 
-function Description({ children }: { children: React.ReactNode }) {
+function Description({ children }: { children: ReactNode }) {
   return <p className="text-sm text-gray-600">{children}</p>;
 }
 
-function Label({ children }: { children: React.ReactNode }) {
+function Label({ children }: { children: ReactNode }) {
   return <span>{children}</span>;
 }
 
-function Badge({ children }: { children: React.ReactNode }) {
+function Badge({ children }: { children: ReactNode }) {
   return (
     <span className="text-black px-2 rounded-xl bg-gray-200">{children}</span>
   );

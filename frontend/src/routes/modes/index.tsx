@@ -1,4 +1,5 @@
 import { Card, styles } from '@/components/Card';
+import { Navbar } from '@/components/Navbar';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/modes/')({
@@ -62,21 +63,24 @@ const modes = [
 
 function RouteComponent() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 cursor-pointer gap-6 px-4">
-        {modes.map((mode) => (
-          <Card.Link key={mode.title} to={mode.to} disabled={mode.comingSoon}>
-            <Card color={mode.labelColor} disabled={mode.comingSoon}>
-              <Card.Header>
-                <Card.Label>{mode.label}</Card.Label>
-                {mode.comingSoon && <Card.Badge>Coming Soon</Card.Badge>}
-              </Card.Header>
+    <div className="min-h-svh flex flex-col">
+      <Navbar />
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+          {modes.map((mode) => (
+            <Card.Link key={mode.title} to={mode.to} disabled={mode.comingSoon}>
+              <Card color={mode.labelColor} disabled={mode.comingSoon}>
+                <Card.Header>
+                  <Card.Label>{mode.label}</Card.Label>
+                  {mode.comingSoon && <Card.Badge>Coming Soon</Card.Badge>}
+                </Card.Header>
 
-              <Card.Title>{mode.title}</Card.Title>
-              <Card.Description>{mode.description}</Card.Description>
-            </Card>
-          </Card.Link>
-        ))}
+                <Card.Title>{mode.title}</Card.Title>
+                <Card.Description>{mode.description}</Card.Description>
+              </Card>
+            </Card.Link>
+          ))}
+        </div>
       </div>
     </div>
   );
