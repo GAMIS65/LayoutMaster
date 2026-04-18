@@ -20,7 +20,7 @@ function App() {
           </div>
 
           <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-lg">
-            The fast, modern, and customizable touch typing platform.
+            The fun, modern, and customizable touch typing platform.
           </p>
 
           <Link to="/layouts">
