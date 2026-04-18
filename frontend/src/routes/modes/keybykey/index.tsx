@@ -22,7 +22,11 @@ function RouteComponent() {
   const { level, xp, addXp, removeXp } = useLevel();
   const [input, setInput] = useState('');
   const [text, setText] = useState(
-    generateLetters(20, learningOrder.slice(0, level), learningOrder[level]),
+    generateLetters(
+      20,
+      level === 0 ? [learningOrder[0]] : learningOrder.slice(0, level),
+      learningOrder[level] ?? learningOrder[0],
+    ),
   );
 
   useEffect(() => {
