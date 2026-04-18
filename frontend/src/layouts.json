@@ -503,62 +503,66 @@
             "shift": "right"
           },
           {
-            "letter": { "display": "q", "withoutShift": "q", "withShift": "Q" },
+            "letter": {
+              "display": "'",
+              "withoutShift": "'",
+              "withShift": "\""
+            },
             "finger": "pinkyLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "w", "withoutShift": "w", "withShift": "W" },
+            "letter": { "display": ",", "withoutShift": ",", "withShift": "<" },
             "finger": "ringLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "e", "withoutShift": "e", "withShift": "E" },
+            "letter": { "display": ".", "withoutShift": ".", "withShift": ">" },
             "finger": "middleLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "r", "withoutShift": "r", "withShift": "R" },
-            "finger": "indexLeft",
-            "shift": "right"
-          },
-          {
-            "letter": { "display": "t", "withoutShift": "t", "withShift": "T" },
+            "letter": { "display": "p", "withoutShift": "p", "withShift": "P" },
             "finger": "indexLeft",
             "shift": "right"
           },
           {
             "letter": { "display": "y", "withoutShift": "y", "withShift": "Y" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "f", "withoutShift": "f", "withShift": "F" },
             "finger": "indexRight",
             "shift": "left"
           },
           {
-            "letter": { "display": "u", "withoutShift": "u", "withShift": "U" },
+            "letter": { "display": "g", "withoutShift": "g", "withShift": "G" },
             "finger": "indexRight",
             "shift": "left"
           },
           {
-            "letter": { "display": "i", "withoutShift": "i", "withShift": "I" },
+            "letter": { "display": "c", "withoutShift": "c", "withShift": "C" },
             "finger": "middleRight",
             "shift": "left"
           },
           {
-            "letter": { "display": "o", "withoutShift": "o", "withShift": "O" },
+            "letter": { "display": "r", "withoutShift": "r", "withShift": "R" },
             "finger": "ringRight",
             "shift": "left"
           },
           {
-            "letter": { "display": "p", "withoutShift": "p", "withShift": "P" },
+            "letter": { "display": "l", "withoutShift": "l", "withShift": "L" },
             "finger": "pinkyRight",
             "shift": "left"
           },
           {
-            "letter": { "display": "[", "withoutShift": "[", "withShift": "{" },
+            "letter": { "display": "/", "withoutShift": "/", "withShift": "?" },
             "finger": "pinkyRight",
             "shift": "left"
           },
           {
-            "letter": { "display": "]", "withoutShift": "]", "withShift": "}" },
+            "letter": { "display": "=", "withoutShift": "=", "withShift": "+" },
             "finger": "pinkyRight",
             "shift": "left"
           },
@@ -591,24 +595,29 @@
             "shift": "right"
           },
           {
-            "letter": { "display": "s", "withoutShift": "s", "withShift": "S" },
+            "letter": { "display": "o", "withoutShift": "o", "withShift": "O" },
             "finger": "ringLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "d", "withoutShift": "d", "withShift": "D" },
+            "letter": { "display": "e", "withoutShift": "e", "withShift": "E" },
             "finger": "middleLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "f", "withoutShift": "f", "withShift": "F" },
+            "letter": { "display": "u", "withoutShift": "u", "withShift": "U" },
             "finger": "indexLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "g", "withoutShift": "g", "withShift": "G" },
+            "letter": { "display": "i", "withoutShift": "i", "withShift": "I" },
             "finger": "indexLeft",
             "shift": "right"
+          },
+          {
+            "letter": { "display": "d", "withoutShift": "d", "withShift": "D" },
+            "finger": "indexRight",
+            "shift": "left"
           },
           {
             "letter": { "display": "h", "withoutShift": "h", "withShift": "H" },
@@ -616,30 +625,25 @@
             "shift": "left"
           },
           {
-            "letter": { "display": "j", "withoutShift": "j", "withShift": "J" },
-            "finger": "indexRight",
-            "shift": "left"
-          },
-          {
-            "letter": { "display": "k", "withoutShift": "k", "withShift": "K" },
+            "letter": { "display": "t", "withoutShift": "t", "withShift": "T" },
             "finger": "middleRight",
             "shift": "left"
           },
           {
-            "letter": { "display": "l", "withoutShift": "l", "withShift": "L" },
+            "letter": { "display": "n", "withoutShift": "n", "withShift": "N" },
             "finger": "ringRight",
             "shift": "left"
           },
           {
-            "letter": { "display": ";", "withoutShift": ";", "withShift": ":" },
+            "letter": { "display": "s", "withoutShift": "s", "withShift": "S" },
             "finger": "pinkyRight",
             "shift": "left"
           },
           {
             "letter": {
-              "display": "'",
-              "withoutShift": "'",
-              "withShift": "\""
+              "display": "-",
+              "withoutShift": "-",
+              "withShift": "_"
             },
             "finger": "pinkyRight",
             "shift": "left"
@@ -668,32 +672,32 @@
             "shift": ""
           },
           {
-            "letter": { "display": "z", "withoutShift": "z", "withShift": "Z" },
+            "letter": { "display": ";", "withoutShift": ";", "withShift": ":" },
             "finger": "pinkyLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "x", "withoutShift": "x", "withShift": "X" },
+            "letter": { "display": "q", "withoutShift": "q", "withShift": "Q" },
             "finger": "ringLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "c", "withoutShift": "c", "withShift": "C" },
+            "letter": { "display": "j", "withoutShift": "j", "withShift": "J" },
             "finger": "middleLeft",
             "shift": "right"
           },
           {
-            "letter": { "display": "v", "withoutShift": "v", "withShift": "V" },
+            "letter": { "display": "k", "withoutShift": "k", "withShift": "K" },
+            "finger": "indexLeft",
+            "shift": "right"
+          },
+          {
+            "letter": { "display": "x", "withoutShift": "x", "withShift": "X" },
             "finger": "indexLeft",
             "shift": "right"
           },
           {
             "letter": { "display": "b", "withoutShift": "b", "withShift": "B" },
-            "finger": "indexLeft",
-            "shift": "right"
-          },
-          {
-            "letter": { "display": "n", "withoutShift": "n", "withShift": "N" },
             "finger": "indexRight",
             "shift": "left"
           },
@@ -703,17 +707,17 @@
             "shift": "left"
           },
           {
-            "letter": { "display": ",", "withoutShift": ",", "withShift": "<" },
+            "letter": { "display": "w", "withoutShift": "w", "withShift": "W" },
             "finger": "middleRight",
             "shift": "left"
           },
           {
-            "letter": { "display": ".", "withoutShift": ".", "withShift": ">" },
+            "letter": { "display": "v", "withoutShift": "v", "withShift": "V" },
             "finger": "ringRight",
             "shift": "left"
           },
           {
-            "letter": { "display": "/", "withoutShift": "/", "withShift": "?" },
+            "letter": { "display": "z", "withoutShift": "z", "withShift": "Z" },
             "finger": "pinkyRight",
             "shift": "left"
           },
