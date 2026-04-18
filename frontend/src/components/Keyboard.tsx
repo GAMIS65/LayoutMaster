@@ -13,6 +13,11 @@ type KeyProps = {
   isActive: boolean;
 };
 
+type KeyboardProps = {
+  activeAll?: boolean;
+  highlightedKey?: string;
+};
+
 const colors: Record<Finger, string> = {
   pinkyLeft: 'bg-pink-400',
   ringLeft: 'bg-violet-400',
@@ -39,23 +44,31 @@ const sizes = {
 export function Key({ keyData, isActive }: KeyProps) {
   return (
     <div
-      className={`h-12 flex items-center justify-center rounded-md text-white text-sm font-bold select-none w-20 ${colors[keyData.finger]} ${sizes[keyData.letter.display as keyof typeof sizes] ?? 'flex-1'}`}
+      className={`h-12 flex items-center justify-center rounded-md text-white text-sm font-bold select-none w-20 ${isActive ? '' : 'opacity-40'} ${colors[keyData.finger]} ${sizes[keyData.letter.display as keyof typeof sizes] ?? 'flex-1'}`}
     >
       {keyData.letter.display}
     </div>
   );
 }
 
-export function Keyboard() {
+export function Keyboard(props: KeyboardProps) {
   const { layoutName } = useKeyboardLayout();
   return (
     <>
       <div className="p-4 rounded-xl bg-gray-100 inline-block">
-        <div className="flex flex-col gap-2 w-full max-w-[900px] md:min-w-[800px]">
+        <div className="flex flex-col gap-2 w-full max-w-225 md:min-w-200">
           {layout[layoutName].rows.map((row, rowIndex) => (
             <div key={rowIndex} className="flex gap-2 w-full">
               {row.rows.map((key, keyIndex) => (
-                <Key key={keyIndex} keyData={key} isActive={false} />
+                <Key
+                  key={keyIndex}
+                  keyData={key}
+                  isActive={
+                    props.activeAll ||
+                    props.highlightedKey === key.letter.withShift ||
+                    props.highlightedKey === key.letter.withoutShift
+                  }
+                />
               ))}
             </div>
           ))}

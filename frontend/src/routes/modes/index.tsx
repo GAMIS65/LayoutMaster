@@ -68,7 +68,11 @@ function RouteComponent() {
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
           {modes.map((mode) => (
-            <Card.Link key={mode.title} to={mode.to} disabled={mode.comingSoon}>
+            <Card.Link
+              key={mode.title}
+              to={`/modes/${mode.to}`}
+              disabled={mode.comingSoon}
+            >
               <Card color={mode.labelColor} disabled={mode.comingSoon}>
                 <Card.Header>
                   <Card.Label>{mode.label}</Card.Label>

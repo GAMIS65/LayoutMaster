@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ModesIndexRouteImport } from './routes/modes/index'
 import { Route as LayoutsIndexRouteImport } from './routes/layouts/index'
+import { Route as ModesKeybykeyIndexRouteImport } from './routes/modes/keybykey/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const LayoutsIndexRoute = LayoutsIndexRouteImport.update({
   path: '/layouts/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ModesKeybykeyIndexRoute = ModesKeybykeyIndexRouteImport.update({
+  id: '/modes/keybykey/',
+  path: '/modes/keybykey/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/layouts/': typeof LayoutsIndexRoute
   '/modes/': typeof ModesIndexRoute
+  '/modes/keybykey/': typeof ModesKeybykeyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/layouts': typeof LayoutsIndexRoute
   '/modes': typeof ModesIndexRoute
+  '/modes/keybykey': typeof ModesKeybykeyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/layouts/': typeof LayoutsIndexRoute
   '/modes/': typeof ModesIndexRoute
+  '/modes/keybykey/': typeof ModesKeybykeyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/layouts/' | '/modes/'
+  fullPaths: '/' | '/layouts/' | '/modes/' | '/modes/keybykey/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/layouts' | '/modes'
-  id: '__root__' | '/' | '/layouts/' | '/modes/'
+  to: '/' | '/layouts' | '/modes' | '/modes/keybykey'
+  id: '__root__' | '/' | '/layouts/' | '/modes/' | '/modes/keybykey/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LayoutsIndexRoute: typeof LayoutsIndexRoute
   ModesIndexRoute: typeof ModesIndexRoute
+  ModesKeybykeyIndexRoute: typeof ModesKeybykeyIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modes/keybykey/': {
+      id: '/modes/keybykey/'
+      path: '/modes/keybykey'
+      fullPath: '/modes/keybykey/'
+      preLoaderRoute: typeof ModesKeybykeyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LayoutsIndexRoute: LayoutsIndexRoute,
   ModesIndexRoute: ModesIndexRoute,
+  ModesKeybykeyIndexRoute: ModesKeybykeyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

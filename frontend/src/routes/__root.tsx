@@ -2,12 +2,15 @@ import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { KeyboardLayoutProvider } from '@/context/LayoutContext';
+import { LevelProvider } from '@/context/LevelContext';
 
 export const Route = createRootRoute({
   component: () => (
     <>
       <KeyboardLayoutProvider>
-        <Outlet />
+        <LevelProvider>
+          <Outlet />
+        </LevelProvider>
       </KeyboardLayoutProvider>
       <TanStackDevtools
         config={{

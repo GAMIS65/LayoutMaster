@@ -32,7 +32,7 @@ function RouteComponent() {
           </div>
 
           <div className="mx-6 flex-col">
-            <Keyboard />
+            <Keyboard activeAll={true} />
             <div className="flex justify-end mt-3">
               <Link
                 to="/modes"

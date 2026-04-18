@@ -15,7 +15,7 @@ export default function Logo() {
   ];
 
   return (
-    <div className="text-shadow-sm">
+    <div className="text-shadow-sm flex">
       {logoChars.map((item, index) => (
         <span
           key={index}
